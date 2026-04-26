@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap");
+body {
+	font-family: "Quicksand", sans-serif;
+	background: #1e1b4b;
+	margin: 0;
+	overflow: auto;
+	color: white;
+	min-height: 100vh;
+}
+
+.header-font {
+	font-family: "Fredoka One", cursive;
+}
+
+.bg-space {
+	background: radial-gradient(circle at center, #312e81 0%, #1e1b4b 100%);
+	min-height: 100vh;
+}
+
+canvas {
+	background: linear-gradient(to bottom, #4338ca 0%, #6366f1 100%);
+	display: block;
+	margin: 0 auto;
+	border: 8px solid #818cf8;
+	border-radius: 40px;
+	box-shadow: 0 0 80px rgba(99, 102, 241, 0.5);
+	image-rendering: auto;
+}
+
+.level-card {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.level-card:hover {
+	background: rgba(255, 255, 255, 0.15);
+	transform: translateY(-8px);
+	border-color: #818cf8;
+}
+
+.drop-zone {
+	border: 3px dashed #6366f1;
+	transition: all 0.2s;
+	background: #1e1b4b;
+	color: white;
+}
+.drop-zone.active {
+	border-color: #818cf8;
+	background: #312e81;
+	transform: scale(1.02);
+}
+
+.correct-anim {
+	animation: success 0.5s ease-out;
+}
+@keyframes success {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+		background-color: #22c55e;
+	}
+	100% {
+		transform: scale(1);
+	}
+}

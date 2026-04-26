@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Super Matematyka - Przygoda z Liczeniem</title>
+		<link rel="stylesheet" href="css/style_gry.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-space p-4">
+		<!-- MENU GŁÓWNE -->
+		<div id="main-menu" class="max-w-4xl mx-auto text-center py-10">
+			<h1
+				class="header-font text-8xl text-transparent bg-clip-text bg-gradient-to-b from-indigo-300 to-indigo-500 mb-4 drop-shadow-2xl"
+			>
+				Super Matematyka
+			</h1>
+			<p class="text-indigo-200 text-2xl mb-12 opacity-90">
+				Kosmiczna zabawa z matematyką!
+			</p>
+
+			<div class="grid grid-cols-2 gap-4 md:gap-8">
+				<button
+					onclick="showGame('skoczek')"
+					class="bg-indigo-600 hover:bg-indigo-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-indigo-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:scale-110 transition-transform"
+						>🚀</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Skoczek
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-indigo-100 text-sm opacity-80"
+					>
+						Skacz i licz!
+					</p>
+				</button>
+
+				<button
+					onclick="showGame('klocki')"
+					class="bg-fuchsia-700 hover:bg-fuchsia-600 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-fuchsia-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:scale-110 transition-transform"
+						>🧩</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Edu-Klocki
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-fuchsia-100 text-sm opacity-80"
+					>
+						Dopasuj ułamki!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 3')"
+					class="bg-emerald-600 hover:bg-emerald-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-emerald-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:scale-110 transition-transform"
+						>📝</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Pisemne
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-emerald-100 text-sm opacity-80"
+					>
+						Licz pod kreską!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 4')"
+					class="bg-amber-600 hover:bg-amber-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-amber-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:scale-110 transition-transform"
+						>⚖️</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Wagi
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-amber-100 text-sm opacity-80"
+					>
+						Porównaj liczby!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 5')"
+					class="bg-orange-500 hover:bg-orange-400 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-orange-800 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:rotate-12 transition-transform"
+						>📐</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Łowca Figur
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-orange-100 text-sm opacity-80"
+					>
+						Rozpoznaj kształty!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 6')"
+					class="bg-red-600 hover:bg-red-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-red-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:scale-110 transition-transform"
+						>🟩</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Mistrz Pola
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-red-100 text-sm opacity-80"
+					>
+						Oblicz powierzchnię!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 7')"
+					class="bg-cyan-600 hover:bg-cyan-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-cyan-900 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:-rotate-12 transition-transform"
+						>🍰</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Dzielenie Tortu
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-cyan-100 text-sm opacity-80"
+					>
+						Pokonaj ułamki!
+					</p>
+				</button>
+
+				<button
+					onclick="alert('Gra 8')"
+					class="bg-yellow-600 hover:bg-yellow-500 p-6 md:p-10 rounded-[30px] shadow-2xl transition-all border-b-8 border-yellow-800 group text-center"
+				>
+					<span
+						class="text-5xl md:text-7xl block mb-3 group-hover:bounce transition-transform"
+						>🔟</span
+					>
+					<h2 class="header-font text-xl md:text-3xl text-white">
+						Liczbowy Świat
+					</h2>
+					<p
+						class="hidden md:block mt-2 text-yellow-100 text-sm opacity-80"
+					>
+						Wielkie liczby!
+					</p>
+				</button>
+			</div>
+		</div>
+		<!-- GRA 1: SKOCZEK -->
+		<div id="game-skoczek" class="hidden">
+			<div class="text-center mb-4">
+				<button
+					onclick="backToMain()"
+					class="px-8 py-3 bg-indigo-500/20 hover:bg-indigo-500/40 rounded-full text-indigo-200 font-bold border border-indigo-500/30 transition"
+				>
+					⬅️ Powrót do bazy
+				</button>
+			</div>
+			<canvas id="gameCanvas" width="800" height="600"></canvas>
+		</div>
+
+		<!-- GRA 2: EDU-KLOCKI -->
+		<div id="game-klocki" class="hidden max-w-4xl mx-auto">
+			<div class="text-center mb-6">
+				<button
+					onclick="backToMain()"
+					class="px-8 py-3 bg-fuchsia-500/20 hover:bg-fuchsia-500/40 rounded-full text-fuchsia-200 font-bold border border-fuchsia-500/30 transition"
+				>
+					⬅️ Powrót do bazy
+				</button>
+			</div>
+			<div
+				id="klocki-categories"
+				class="bg-slate-900/80 backdrop-blur-xl p-10 rounded-[50px] shadow-2xl text-center border-t-8 border-fuchsia-600"
+			>
+				<h2 class="header-font text-4xl text-fuchsia-300 mb-8">
+					Wybierz misję:
+				</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<button
+						onclick="startKlocki('Liczby Naturalne')"
+						class="p-8 bg-indigo-950/40 hover:bg-indigo-900 rounded-3xl font-bold border-2 border-indigo-500/30 transition text-xl"
+					>
+						1️⃣ Liczby Naturalne
+					</button>
+					<button
+						onclick="startKlocki('Ułamki')"
+						class="p-8 bg-indigo-950/40 hover:bg-indigo-900 rounded-3xl font-bold border-2 border-indigo-500/30 transition text-xl"
+					>
+						🍰 Ułamki
+					</button>
+					<button
+						onclick="startKlocki('Geometria')"
+						class="p-8 bg-indigo-950/40 hover:bg-indigo-900 rounded-3xl font-bold border-2 border-indigo-500/30 transition text-xl"
+					>
+						📐 Geometria
+					</button>
+					<button
+						onclick="startKlocki('Zegar i Kalendarz')"
+						class="p-8 bg-indigo-950/40 hover:bg-indigo-900 rounded-3xl font-bold border-2 border-indigo-500/30 transition text-xl"
+					>
+						📅 Zegar i Kalendarz
+					</button>
+				</div>
+			</div>
+			<div id="klocki-board" class="hidden">
+				<div
+					class="bg-slate-900/80 backdrop-blur-xl p-8 rounded-[50px] shadow-xl border-t-8 border-fuchsia-600"
+				>
+					<div class="flex justify-between items-center mb-8">
+						<button
+							onclick="showKlockiCategories()"
+							class="text-fuchsia-400 font-bold hover:scale-105 transition"
+						>
+							⬅️ Zmień misję
+						</button>
+						<h2
+							id="klocki-title"
+							class="header-font text-3xl text-white"
+						>
+							Dział
+						</h2>
+						<div class="w-20"></div>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+						<div id="klocki-drop-zones" class="space-y-4"></div>
+						<div
+							id="klocki-drag-items"
+							class="flex flex-wrap gap-4 content-start justify-center p-8 bg-black/30 rounded-[40px] min-h-[300px] border border-white/5"
+						></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			// --- DANE ---
+			const klockiData = {
+				"Liczby Naturalne": [
+					{ q: "Sto tysięcy osiem", a: "100 008" },
+					{ q: "12 * 4", a: "48" },
+					{ q: "Cyfra jedności w 456", a: "6" },
+					{ q: "Połowa z 500", a: "250" },
+				],
+				Ułamki: [
+					{ q: "1/2 + 1/2", a: "1" },
+					{ q: "0,5 jako ułamek", a: "1/2" },
+					{ q: "0,25 + 0,25", a: "0,5" },
+					{ q: "0,7 + 0,3", a: "1,0" },
+				],
+				Geometria: [
+					{ q: "Suma kątów trójkąta", a: "180°" },
+					{ q: "Pole 2x5", a: "10" },
+					{ q: "Kąt prosty", a: "90°" },
+				],
+				"Zegar i Kalendarz": [
+					{ q: "Ile dni ma rok?", a: "365" },
+					{ q: "Kwadrans to ile min?", a: "15" },
+					{ q: "Pół godziny", a: "30" },
+				],
+			};
+
+			const skoczekTasks = {
+				EASY: [
+					{ q: "0,2 + 0,3", a: "0,5", opts: ["0,5", "0,05", "1,0"] },
+					{ q: "1 - 0,1", a: "0,9", opts: ["0,9", "0,8", "1,1"] },
+				],
+				MEDIUM: [
+					{
+						q: "0,25 + 0,25",
+						a: "0,5",
+						opts: ["0,5", "0,25", "0,55"],
+					},
+					{ q: "1,2 + 0,8", a: "2,0", opts: ["2,0", "1,10", "2,2"] },
+				],
+				HARD: [
+					{
+						q: "2,5 - 1,55",
+						a: "0,95",
+						opts: ["0,95", "1,05", "1,1"],
+					},
+					{ q: "3,4 * 2", a: "6,8", opts: ["6,8", "6,4", "7,8"] },
+				],
+			};
+
+			// --- CORE UI ---
+			function showGame(game) {
+				document.getElementById("main-menu").classList.add("hidden");
+				if (game === "skoczek") {
+					document
+						.getElementById("game-skoczek")
+						.classList.remove("hidden");
+					gameState = "START";
+				} else {
+					document
+						.getElementById("game-klocki")
+						.classList.remove("hidden");
+					showKlockiCategories();
+				}
+			}
+
+			function backToMain() {
+				document.getElementById("main-menu").classList.remove("hidden");
+				document.getElementById("game-skoczek").classList.add("hidden");
+				document.getElementById("game-klocki").classList.add("hidden");
+				gameState = "MENU";
+			}
+
+			// --- KLOCKI LOGIC ---
+			function showKlockiCategories() {
+				document
+					.getElementById("klocki-categories")
+					.classList.remove("hidden");
+				document.getElementById("klocki-board").classList.add("hidden");
+			}
+
+			function startKlocki(category) {
+				document
+					.getElementById("klocki-categories")
+					.classList.add("hidden");
+				document
+					.getElementById("klocki-board")
+					.classList.remove("hidden");
+				document.getElementById("klocki-title").innerText = category;
+				const zones = document.getElementById("klocki-drop-zones");
+				const items = document.getElementById("klocki-drag-items");
+				zones.innerHTML = "";
+				items.innerHTML = "";
+				const data = [...klockiData[category]].sort(
+					() => Math.random() - 0.5,
+				);
+				const answers = data
+					.map((d) => d.a)
+					.sort(() => Math.random() - 0.5);
+				data.forEach((task) => {
+					const zone = document.createElement("div");
+					zone.className =
+						"drop-zone p-5 rounded-3xl flex justify-between items-center bg-white/5";
+					zone.innerHTML = `<span class="text-lg font-bold">${task.q}</span><div class="target-slot w-28 h-12 bg-black/40 rounded-2xl flex items-center justify-center text-xs border border-white/10" data-ans="${task.a}">?</div>`;
+					zones.appendChild(zone);
+				});
+				answers.forEach((ans) => {
+					const item = document.createElement("div");
+					item.className =
+						"block-item bg-gradient-to-br from-fuchsia-500 to-fuchsia-700 hover:from-fuchsia-400 hover:to-fuchsia-600 px-6 py-3 rounded-2xl font-bold shadow-xl cursor-grab active:cursor-grabbing transition-all";
+					item.draggable = true;
+					item.innerText = ans;
+					item.ondragstart = (e) =>
+						e.dataTransfer.setData("text", ans);
+					items.appendChild(item);
+				});
+				setupDropEvents();
+			}
+
+			function setupDropEvents() {
+				document.querySelectorAll(".target-slot").forEach((slot) => {
+					slot.ondragover = (e) => {
+						e.preventDefault();
+						slot.parentElement.classList.add("active");
+					};
+					slot.ondragleave = () =>
+						slot.parentElement.classList.remove("active");
+					slot.ondrop = (e) => {
+						e.preventDefault();
+						const val = e.dataTransfer.getData("text");
+						const isMatch =
+							val.replace(",", ".") ===
+							slot.dataset.ans.replace(",", ".");
+						if (isMatch) {
+							slot.innerText = val;
+							slot.className =
+								"w-28 h-12 bg-green-500 text-white rounded-2xl flex items-center justify-center font-bold text-lg shadow-lg";
+							slot.parentElement.classList.add("correct-anim");
+							document
+								.querySelectorAll(".block-item")
+								.forEach((i) => {
+									if (i.innerText === val) i.remove();
+								});
+						}
+						slot.parentElement.classList.remove("active");
+					};
+				});
+			}
+
+			// --- SKOCZEK LOGIC ---
+			const canvas = document.getElementById("gameCanvas");
+			const ctx = canvas.getContext("2d");
+			let gameState = "MENU";
+			let score = 0,
+				lives = 3,
+				difficulty = "EASY",
+				currentTaskIdx = 0;
+			let player = {
+				x: 400,
+				y: 500,
+				w: 44,
+				h: 54,
+				dx: 0,
+				dy: 0,
+				jump: -20,
+				grounded: false,
+				facing: "right",
+			};
+			let platforms = [],
+				coins = [],
+				stars = [],
+				particles = [],
+				scorePopups = [];
+
+			function initSkoczek(diff) {
+				difficulty = diff;
+				gameState = "PLAYING";
+				score = 0;
+				lives = 3;
+				currentTaskIdx = 0;
+				player.x = 400;
+				player.y = 480;
+				player.dy = 0;
+				player.dx = 0;
+
+				// Obniżono poziomy platform, aby najwyższa była bezpieczna dla paska UI
+				platforms = [
+					{ x: 0, y: 550, w: 800, h: 100 }, // Ziemia
+					{ x: 50, y: 460, w: 200, h: 25 },
+					{ x: 550, y: 460, w: 200, h: 25 },
+					{ x: 300, y: 360, w: 200, h: 25 },
+					{ x: 40, y: 260, w: 180, h: 25 },
+					{ x: 580, y: 260, w: 180, h: 25 },
+					{ x: 320, y: 160, w: 160, h: 25 }, // Najwyższa teraz na 160 (bezpieczny dystans od góry)
+				];
+
+				stars = [];
+				for (let i = 0; i < 80; i++)
+					stars.push({
+						x: Math.random() * 800,
+						y: Math.random() * 600,
+						s: Math.random() * 2,
+						o: Math.random(),
+					});
+				spawnSkoczekTask();
+			}
+
+			function spawnSkoczekTask() {
+				const list = skoczekTasks[difficulty];
+				const task = list[currentTaskIdx % list.length];
+				const shuffled = [...task.opts].sort(() => Math.random() - 0.5);
+
+				let playerPlatformIndex = -1;
+				platforms.forEach((p, idx) => {
+					if (
+						player.x + player.w > p.x &&
+						player.x < p.x + p.w &&
+						Math.abs(player.y + player.h - p.y) < 15
+					) {
+						playerPlatformIndex = idx;
+					}
+				});
+
+				// Nigdy nie spawnuje na platformie gracza
+				let availablePlats = platforms
+					.slice(1)
+					.filter((p, idx) => idx + 1 !== playerPlatformIndex);
+				availablePlats.sort(() => Math.random() - 0.5);
+
+				coins = shuffled.map((val, i) => {
+					const plat = availablePlats[i % availablePlats.length];
+					return {
+						x: plat.x + plat.w / 2,
+						y: plat.y - 40, // Zawsze 40px nad platformą (na słupku)
+						val: val,
+						isCorrect:
+							parseFloat(val.replace(",", ".")) ===
+							parseFloat(task.a.replace(",", ".")),
+						collected: false,
+					};
+				});
+			}
+
+			function updateSkoczek() {
+				if (gameState !== "PLAYING") return;
+
+				player.dy += 0.85;
+				player.x += player.dx;
+				player.y += player.dy;
+				player.grounded = false;
+
+				platforms.forEach((p) => {
+					if (
+						player.dy >= 0 &&
+						player.x + player.w * 0.7 > p.x &&
+						player.x + player.w * 0.3 < p.x + p.w &&
+						player.y + player.h > p.y &&
+						player.y + player.h < p.y + p.h + 20
+					) {
+						player.grounded = true;
+						player.dy = 0;
+						player.y = p.y - player.h;
+					}
+				});
+
+				coins.forEach((coin) => {
+					if (
+						!coin.collected &&
+						Math.hypot(
+							player.x + player.w / 2 - coin.x,
+							player.y + player.h / 2 - coin.y,
+						) < 45
+					) {
+						coin.collected = true;
+						if (coin.isCorrect) {
+							score += 100;
+							scorePopups.push({
+								x: coin.x,
+								y: coin.y,
+								text: "SUPER! +100",
+								life: 1,
+							});
+							for (let i = 0; i < 15; i++)
+								particles.push({
+									x: coin.x,
+									y: coin.y,
+									dx: (Math.random() - 0.5) * 12,
+									dy: (Math.random() - 0.5) * 12,
+									life: 1,
+									c: "#fbbf24",
+								});
+							currentTaskIdx++;
+							coins = coins.map((c) => ({
+								...c,
+								collected: true,
+							}));
+							setTimeout(spawnSkoczekTask, 400);
+						} else {
+							lives--;
+							for (let i = 0; i < 15; i++)
+								particles.push({
+									x: coin.x,
+									y: coin.y,
+									dx: (Math.random() - 0.5) * 12,
+									dy: (Math.random() - 0.5) * 12,
+									life: 1,
+									c: "#ff4444",
+								});
+							if (lives <= 0) gameState = "GAMEOVER";
+							else spawnSkoczekTask();
+						}
+					}
+				});
+
+				if (player.x < 0) player.x = 0;
+				if (player.x > canvas.width - player.w)
+					player.x = canvas.width - player.w;
+				if (player.y > canvas.height) {
+					lives--;
+					player.x = 400;
+					player.y = 400;
+					player.dy = 0;
+					if (lives <= 0) gameState = "GAMEOVER";
+				}
+
+				stars.forEach((s) => {
+					s.o = 0.5 + Math.sin(Date.now() / 500 + s.x) * 0.5;
+				});
+				particles.forEach((p) => {
+					p.x += p.dx;
+					p.y += p.dy;
+					p.life -= 0.02;
+				});
+				particles = particles.filter((p) => p.life > 0);
+				scorePopups.forEach((p) => {
+					p.y -= 2;
+					p.life -= 0.02;
+				});
+				scorePopups = scorePopups.filter((p) => p.life > 0);
+			}
+
+			function drawSkoczek() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				if (gameState === "START") {
+					let grad = ctx.createRadialGradient(
+						400,
+						300,
+						50,
+						400,
+						300,
+						450,
+					);
+					grad.addColorStop(0, "#312e81");
+					grad.addColorStop(1, "#1e1b4b");
+					ctx.fillStyle = grad;
+					ctx.fillRect(0, 0, 800, 600);
+
+					ctx.fillStyle = "white";
+					ctx.textAlign = "center";
+					ctx.font = "bold 45px Fredoka One";
+					ctx.fillText("GOTOWY NA START?", 400, 140);
+
+					drawLevelCard(100, 240, 180, 240, "ŁATWY", "🚀", "#4ade80");
+					drawLevelCard(
+						310,
+						240,
+						180,
+						240,
+						"ŚREDNI",
+						"🛰️",
+						"#facc15",
+					);
+					drawLevelCard(
+						520,
+						240,
+						180,
+						240,
+						"TRUDNY",
+						"🛸",
+						"#f87171",
+					);
+				} else if (gameState === "PLAYING") {
+					stars.forEach((s) => {
+						ctx.globalAlpha = s.o;
+						ctx.fillStyle = "white";
+						ctx.beginPath();
+						ctx.arc(s.x, s.y, s.s, 0, Math.PI * 2);
+						ctx.fill();
+					});
+					ctx.globalAlpha = 1;
+
+					platforms.forEach((p, idx) => {
+						ctx.shadowBlur = 15;
+						ctx.shadowColor = idx === 0 ? "transparent" : "#4f46e5";
+						ctx.fillStyle = idx === 0 ? "#0f172a" : "#1e1b4b";
+						ctx.beginPath();
+						ctx.roundRect(p.x, p.y, p.w, p.h, 12);
+						ctx.fill();
+						ctx.strokeStyle = "#6366f1";
+						ctx.lineWidth = 3;
+						ctx.stroke();
+						ctx.shadowBlur = 0;
+					});
+
+					coins.forEach((coin) => {
+						if (!coin.collected) {
+							const pulse = Math.sin(Date.now() / 180) * 6;
+							ctx.shadowBlur = 20;
+							ctx.shadowColor = "#fbbf24";
+							ctx.fillStyle = "#fbbf24";
+							ctx.beginPath();
+							ctx.arc(coin.x, coin.y + pulse, 34, 0, Math.PI * 2);
+							ctx.fill();
+							ctx.shadowBlur = 0;
+							ctx.fillStyle = "#78350f";
+							ctx.font = "bold 22px Quicksand";
+							ctx.textAlign = "center";
+							ctx.fillText(coin.val, coin.x, coin.y + pulse + 8);
+						}
+					});
+
+					ctx.save();
+					ctx.translate(
+						player.x + player.w / 2,
+						player.y + player.h / 2,
+					);
+					if (player.facing === "left") ctx.scale(-1, 1);
+					ctx.fillStyle = "#ef4444";
+					ctx.beginPath();
+					ctx.roundRect(
+						-player.w / 2,
+						-player.h / 2,
+						player.w,
+						player.h,
+						14,
+					);
+					ctx.fill();
+					ctx.fillStyle = "#fef2f2";
+					ctx.beginPath();
+					ctx.roundRect(
+						-player.w / 2 + 6,
+						-player.h / 2 + 6,
+						player.w - 12,
+						16,
+						8,
+					);
+					ctx.fill();
+					ctx.fillStyle = "#1e1b4b";
+					ctx.fillRect(4, -6, 8, 8);
+					ctx.restore();
+
+					particles.forEach((p) => {
+						ctx.globalAlpha = p.life;
+						ctx.fillStyle = p.c;
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.globalAlpha = 1;
+					});
+					scorePopups.forEach((p) => {
+						ctx.globalAlpha = p.life;
+						ctx.fillStyle = "#fde047";
+						ctx.font = "bold 28px Fredoka One";
+						ctx.fillText(p.text, p.x, p.y);
+						ctx.globalAlpha = 1;
+					});
+
+					// UI Top Bar
+					ctx.fillStyle = "rgba(15, 23, 42, 0.85)";
+					ctx.beginPath();
+					ctx.roundRect(10, 10, 780, 80, 20);
+					ctx.fill();
+					ctx.fillStyle = "white";
+					ctx.textAlign = "left";
+					ctx.font = "bold 26px Quicksand";
+					ctx.fillText(`Punkty: ${score}`, 40, 58);
+					ctx.textAlign = "right";
+					let h = "";
+					for (let i = 0; i < lives; i++) h += "❤️ ";
+					ctx.fillText(h, 760, 58);
+					ctx.textAlign = "center";
+					ctx.fillStyle = "#fde047";
+					ctx.font = "bold 38px Fredoka One";
+					const t =
+						skoczekTasks[difficulty][
+							currentTaskIdx % skoczekTasks[difficulty].length
+						];
+					ctx.fillText(t.q, 400, 62);
+				} else if (gameState === "GAMEOVER") {
+					ctx.fillStyle = "rgba(30, 27, 75, 0.95)";
+					ctx.fillRect(0, 0, 800, 600);
+					ctx.fillStyle = "white";
+					ctx.textAlign = "center";
+					ctx.font = "bold 80px Fredoka One";
+					ctx.fillText("KONIEC MISJI!", 400, 240);
+					ctx.font = "34px Quicksand";
+					ctx.fillText(`Twój wynik: ${score}`, 400, 310);
+					drawBtn(300, 420, 200, 70, "ZAGRAJ ZNOWU", "#6366f1");
+				}
+			}
+
+			function drawLevelCard(x, y, w, h, t, ico, c) {
+				ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+				ctx.beginPath();
+				ctx.roundRect(x, y, w, h, 35);
+				ctx.fill();
+				ctx.strokeStyle = c;
+				ctx.lineWidth = 5;
+				ctx.stroke();
+				ctx.fillStyle = "white";
+				ctx.font = "bold 28px Quicksand";
+				ctx.textAlign = "center";
+				ctx.fillText(t, x + w / 2, y + h - 45);
+				ctx.font = "80px Quicksand";
+				ctx.fillText(ico, x + w / 2, y + h / 2 + 15);
+			}
+
+			function drawBtn(x, y, w, h, t, c) {
+				ctx.fillStyle = c;
+				ctx.beginPath();
+				ctx.roundRect(x, y, w, h, 25);
+				ctx.fill();
+				ctx.fillStyle = "white";
+				ctx.font = "bold 24px Quicksand";
+				ctx.textAlign = "center";
+				ctx.fillText(t, x + w / 2, y + h / 2 + 8);
+			}
+
+			let keys = {};
+			window.addEventListener("keydown", (e) => {
+				keys[e.code] = true;
+				if (gameState === "PLAYING") {
+					if (
+						(e.code === "ArrowUp" || e.code === "Space") &&
+						player.grounded
+					)
+						player.dy = player.jump;
+				}
+			});
+			window.addEventListener("keyup", (e) => (keys[e.code] = false));
+
+			canvas.addEventListener("mousedown", (e) => {
+				const r = canvas.getBoundingClientRect();
+				const x = e.clientX - r.left,
+					y = e.clientY - r.top;
+				if (gameState === "START") {
+					if (y >= 240 && y <= 480) {
+						if (x >= 100 && x <= 280) initSkoczek("EASY");
+						if (x >= 310 && x <= 490) initSkoczek("MEDIUM");
+						if (x >= 520 && x <= 700) initSkoczek("HARD");
+					}
+				} else if (gameState === "GAMEOVER") {
+					if (x >= 300 && x <= 500 && y >= 420 && y <= 490)
+						gameState = "START";
+				}
+			});
+
+			function loop() {
+				if (gameState === "PLAYING") {
+					player.dx = 0;
+					if (keys["ArrowLeft"]) {
+						player.dx = -9;
+						player.facing = "left";
+					}
+					if (keys["ArrowRight"]) {
+						player.dx = 9;
+						player.facing = "right";
+					}
+				}
+				if (
+					gameState !== "MENU" &&
+					!document
+						.getElementById("game-skoczek")
+						.classList.contains("hidden")
+				) {
+					updateSkoczek();
+					drawSkoczek();
+				}
+				requestAnimationFrame(loop);
+			}
+			loop();
+		</script>
+	</body>
+</html>

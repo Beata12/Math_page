@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matematyczny Mistrz</title>
+		<link rel="stylesheet" href="css/style_quiz.css" />
+		<!-- Import ikon dla lepszego wyglądu -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+	</head>
+	<body>
+		<div id="app">
+			<!-- Ekran Startowy -->
+			<header id="header">
+				<h1><i class="fas fa-calculator"></i> Matematyczny Mistrz</h1>
+				<p>Wybierz wyzwanie dla klasy 5!</p>
+			</header>
+
+			<nav id="menu" class="container">
+				<div class="card" onclick="startQuiz('liczby_naturalne')">
+					<i class="fas fa-list-ol"></i>
+					<h3>Liczby naturalne</h3>
+					<p>Rzędy wielkości i oś.</p>
+				</div>
+
+				<div class="card" onclick="startQuiz('figury_wlasnosci')">
+					<i class="fas fa-shapes"></i>
+					<h3>Figury geometryczne</h3>
+					<p>Kąty i własności.</p>
+				</div>
+				<div class="card" onclick="startQuiz('dodawanie_pisemne')">
+					<i class="fas fa-plus-square"></i>
+					<h3>Dodawanie i odejmowanie</h3>
+					<p>Metoda pisemna.</p>
+				</div>
+				<div class="card" onclick="startQuiz('mnozenie_pisemne')">
+					<i class="fas fa-times-circle"></i>
+					<h3>Mnożenie i dzielenie</h3>
+					<p>Działania pisemne.</p>
+				</div>
+				<div class="card" onclick="startQuiz('u_dziesietne')">
+					<i class="fas fa-divide"></i>
+					<h3>Ułamki dziesiętne</h3>
+					<p>Przecinki w akcji!</p>
+				</div>
+				<div class="card" onclick="startQuiz('u_zwykle')">
+					<i class="fas fa-pie-chart"></i>
+					<h3>Ułamki zwykłe</h3>
+					<p>Liczniki i mianowniki.</p>
+				</div>
+				<div class="card" onclick="startQuiz('zegar')">
+					<i class="fas fa-clock"></i>
+					<h3>Zegar</h3>
+					<p>Godziny, minuty, sekundy.</p>
+				</div>
+				<div class="card" onclick="startQuiz('kalendarz')">
+					<i class="fas fa-calendar-alt"></i>
+					<h3>Kalendarz</h3>
+					<p>Dni, miesiące i lata.</p>
+				</div>
+				<div class="card" onclick="startQuiz('pola')">
+					<i class="fas fa-draw-polygon"></i>
+					<h3>Pola figur</h3>
+					<p>Kwadraty, prostokąty i inne.</p>
+				</div>
+			</nav>
+
+			<!-- Kontener Quizu -->
+			<main id="quiz-container" class="container hidden">
+				<div class="quiz-header">
+					<button class="btn-back" onclick="goToMenu()">
+						<i class="fas fa-arrow-left"></i> Wróć
+					</button>
+					<div id="progress-bar-container">
+						<div id="progress-bar"></div>
+					</div>
+					<span id="question-counter">Pytanie 1/5</span>
+				</div>
+
+				<div id="question-area">
+					<h2 id="question-text">Pytanie pojawi się tutaj?</h2>
+					<div id="options-grid">
+						<!-- Odpowiedzi generowane przez JS -->
+					</div>
+				</div>
+
+				<div id="feedback" class="hidden">
+					<p id="feedback-msg"></p>
+					<button id="next-btn" onclick="nextQuestion()">
+						Następne pytanie <i class="fas fa-chevron-right"></i>
+					</button>
+				</div>
+			</main>
+
+			<!-- Ekran Wyniku -->
+			<section id="result-screen" class="container hidden">
+				<div class="result-card">
+					<i id="result-icon" class="fas fa-trophy"></i>
+					<h2>Koniec Quizu!</h2>
+					<p id="score-text">Twój wynik to 0/5</p>
+					<p id="motivational-msg">Świetna robota!</p>
+					<button class="btn-primary" onclick="goToMenu()">
+						Zagraj jeszcze raz
+					</button>
+				</div>
+			</section>
+		</div>
+
+		<script>
+			const quizDatabase = {
+				pola: [
+					{
+						q: "Pole kwadratu o boku 6 cm wynosi:",
+						a: ["12 cm²", "24 cm²", "36 cm²", "36 cm"],
+						c: 2,
+					},
+					{
+						q: "Prostokąt ma boki 4 cm i 9 cm. Jego pole to:",
+						a: ["13 cm²", "36 cm²", "26 cm²", "40 cm²"],
+						c: 1,
+					},
+					{
+						q: "Ile wynosi pole kwadratu, jeśli jego obwód to 20 cm?",
+						a: ["25 cm²", "20 cm²", "100 cm²", "16 cm²"],
+						c: 0,
+					},
+					{
+						q: "Jednostką pola powierzchni jest:",
+						a: ["mm", "m³", "cm²", "kg"],
+						c: 2,
+					},
+					{
+						q: "Pole prostokąta o bokach 5 dm i 2 dm wynosi:",
+						a: ["10 dm", "10 dm²", "7 dm²", "100 cm²"],
+						c: 1,
+					},
+				],
+				u_dziesietne: [
+					{
+						q: "Liczba 'trzy i pięć setnych' zapisana cyframi to:",
+						a: ["3,5", "3,05", "3,005", "35,0"],
+						c: 1,
+					},
+					{
+						q: "0,7 + 0,5 wynosi:",
+						a: ["0,12", "1,2", "1,02", "12,0"],
+						c: 1,
+					},
+					{
+						q: "Która liczba jest największa?",
+						a: ["0,45", "0,5", "0,499", "0,06"],
+						c: 1,
+					},
+					{
+						q: "2,5 kg to ile gramów?",
+						a: ["250 g", "2500 g", "25 g", "25000 g"],
+						c: 1,
+					},
+					{
+						q: "Wynik odejmowania 1 - 0,34 to:",
+						a: ["0,66", "0,76", "1,34", "0,56"],
+						c: 0,
+					},
+				],
+				u_zwykle: [
+					{
+						q: "Ułamek 3/12 po skróceniu to:",
+						a: ["1/3", "1/2", "1/4", "1/6"],
+						c: 2,
+					},
+					{
+						q: "Liczba mieszana 2 i 1/3 to niewłaściwy ułamek:",
+						a: ["3/3", "7/3", "5/3", "6/3"],
+						c: 1,
+					},
+					{
+						q: "Który ułamek jest większy niż 1/2?",
+						a: ["1/4", "3/8", "2/3", "2/5"],
+						c: 2,
+					},
+					{
+						q: "Wynik dodawania 1/5 + 2/5 to:",
+						a: ["3/10", "3/5", "2/25", "1/1"],
+						c: 1,
+					},
+					{
+						q: "Pół kilograma to:",
+						a: ["1/4 kg", "1/5 kg", "1/2 kg", "1/10 kg"],
+						c: 2,
+					},
+				],
+				zegar: [
+					{
+						q: "Ile minut ma 2,5 godziny?",
+						a: ["120 min", "150 min", "250 min", "100 min"],
+						c: 1,
+					},
+					{
+						q: "Kwadrans to ile minut?",
+						a: ["10", "20", "15", "30"],
+						c: 2,
+					},
+					{
+						q: "Jest godzina 14:45. Ile minut brakuje do 15:10?",
+						a: ["15 min", "25 min", "35 min", "20 min"],
+						c: 1,
+					},
+					{
+						q: "Ile sekund ma jedna godzina?",
+						a: ["60", "600", "3600", "360"],
+						c: 2,
+					},
+					{
+						q: "Pół doby to ile godzin?",
+						a: ["12", "24", "6", "10"],
+						c: 0,
+					},
+				],
+				kalendarz: [
+					{
+						q: "Który miesiąc ma zawsze najmniej dni?",
+						a: ["Styczeń", "Luty", "Marzec", "Kwiecień"],
+						c: 1,
+					},
+					{
+						q: "Ile dni ma rok przestępny?",
+						a: ["365", "364", "366", "360"],
+						c: 2,
+					},
+					{
+						q: "Czwarty miesiąc roku to:",
+						a: ["Marzec", "Maj", "Czerwiec", "Kwiecień"],
+						c: 3,
+					},
+					{
+						q: "Ile pełnych tygodni ma rok?",
+						a: ["48", "52", "50", "54"],
+						c: 1,
+					},
+					{
+						q: "Jesień zaczyna się we wrześniu. Który to miesiąc (numer)?",
+						a: ["8", "10", "9", "11"],
+						c: 2,
+					},
+				],
+				figury_wlasnosci: [
+					{
+						q: "Suma kątów w trójkącie wynosi zawsze:",
+						a: ["90°", "180°", "360°", "100°"],
+						c: 1,
+					},
+					{
+						q: "Który trójkąt ma wszystkie boki tej samej długości?",
+						a: [
+							"Równoramienny",
+							"Różnoboczny",
+							"Równoboczny",
+							"Prostokątny",
+						],
+						c: 2,
+					},
+					{
+						q: "Kąt prosty ma miarę:",
+						a: ["180°", "45°", "90°", "120°"],
+						c: 2,
+					},
+					{
+						q: "Trapez, który ma ramiona tej samej długości, to trapez:",
+						a: [
+							"Prostokątny",
+							"Równoramienny",
+							"Równoległoboczny",
+							"Różnoboczny",
+						],
+						c: 1,
+					},
+					{
+						q: "Ile przekątnych ma prostokąt?",
+						a: ["1", "2", "4", "0"],
+						c: 1,
+					},
+				],
+				dodawanie_pisemne: [
+					{
+						q: "Wynik dodawania pisemnego 456 + 287 to:",
+						a: ["733", "743", "643", "741"],
+						c: 1,
+					},
+					{
+						q: "W odejmowaniu pisemnym 1000 - 455 otrzymamy:",
+						a: ["555", "545", "645", "445"],
+						c: 1,
+					},
+					{
+						q: "Gdy dodajemy pisemnie i suma w kolumnie wynosi 13, to:",
+						a: [
+							"Piszemy 13",
+							"Piszemy 1, a 3 dalej",
+							"Piszemy 3, a 1 dalej",
+							"Nic nie robimy",
+						],
+						c: 2,
+					},
+					{
+						q: "Wynik działania 1234 + 566 to:",
+						a: ["1800", "1790", "1810", "1700"],
+						c: 0,
+					},
+					{
+						q: "Różnica liczb 502 i 198 wynosi:",
+						a: ["304", "404", "314", "306"],
+						c: 0,
+					},
+				],
+				mnozenie_pisemne: [
+					{
+						q: "Wynik mnożenia 24 * 5 to:",
+						a: ["100", "120", "140", "110"],
+						c: 1,
+					},
+					{
+						q: "Ile to jest 125 : 5?",
+						a: ["20", "15", "25", "30"],
+						c: 2,
+					},
+					{
+						q: "Podczas mnożenia pisemnego przez liczbę z zerem na końcu:",
+						a: [
+							"Dopisujemy zero",
+							"Odejmujemy zero",
+							"Ignorujemy zero",
+							"Dopisujemy dwa zera",
+						],
+						c: 0,
+					},
+					{
+						q: "Wynik 12 * 11 to:",
+						a: ["122", "131", "132", "142"],
+						c: 2,
+					},
+					{
+						q: "Dzieląc 144 przez 12 otrzymasz:",
+						a: ["10", "11", "12", "14"],
+						c: 2,
+					},
+				],
+				liczby_naturalne: [
+					{
+						q: "Liczba 'sto tysięcy dwadzieścia' to:",
+						a: ["100 200", "100 020", "10 020", "1 000 200"],
+						c: 1,
+					},
+					{
+						q: "Cyfra dziesiątek w liczbie 4567 to:",
+						a: ["4", "5", "6", "7"],
+						c: 2,
+					},
+					{
+						q: "Która z liczb jest parzysta?",
+						a: ["123", "455", "990", "1001"],
+						c: 2,
+					},
+					{
+						q: "W systemie rzymskim liczba X to:",
+						a: ["1", "5", "10", "50"],
+						c: 2,
+					},
+					{
+						q: "Liczba o 100 większa od 9900 to:",
+						a: ["10 000", "9 910", "10 100", "9 990"],
+						c: 0,
+					},
+				],
+			};
+
+			let currentQuestions = [];
+			let questionIndex = 0;
+			let score = 0;
+
+			function startQuiz(category) {
+				currentQuestions = quizDatabase[category];
+				questionIndex = 0;
+				score = 0;
+
+				document.getElementById("menu").classList.add("hidden");
+				document.getElementById("header").classList.add("hidden");
+				document
+					.getElementById("quiz-container")
+					.classList.remove("hidden");
+				document
+					.getElementById("result-screen")
+					.classList.add("hidden");
+
+				showQuestion();
+			}
+
+			function showQuestion() {
+				const data = currentQuestions[questionIndex];
+				document.getElementById("question-text").innerText = data.q;
+				document.getElementById("question-counter").innerText =
+					`Pytanie ${questionIndex + 1}/${currentQuestions.length}`;
+
+				// Progress bar
+				const progress =
+					(questionIndex / currentQuestions.length) * 100;
+				document.getElementById("progress-bar").style.width =
+					`${progress}%`;
+
+				const grid = document.getElementById("options-grid");
+				grid.innerHTML = "";
+				document.getElementById("feedback").classList.add("hidden");
+
+				data.a.forEach((option, idx) => {
+					const btn = document.createElement("button");
+					btn.className = "option-btn";
+					btn.innerText = option;
+					btn.onclick = () => selectOption(idx, btn);
+					grid.appendChild(btn);
+				});
+			}
+
+			function selectOption(idx, btn) {
+				const data = currentQuestions[questionIndex];
+				const buttons = document.querySelectorAll(".option-btn");
+
+				// Disable all buttons after selection
+				buttons.forEach((b) => (b.onclick = null));
+
+				if (idx === data.c) {
+					btn.classList.add("correct");
+					score++;
+					showFeedback("Brawo! To poprawna odpowiedź.", true);
+				} else {
+					btn.classList.add("wrong");
+					buttons[data.c].classList.add("correct");
+					showFeedback(
+						`Niestety nie. Poprawna odpowiedź to: ${data.a[data.c]}`,
+						false,
+					);
+				}
+			}
+
+			function showFeedback(msg, isCorrect) {
+				const f = document.getElementById("feedback");
+				const m = document.getElementById("feedback-msg");
+				f.classList.remove("hidden");
+				m.innerText = msg;
+				m.style.color = isCorrect ? "#27ae60" : "#e74c3c";
+			}
+
+			function nextQuestion() {
+				questionIndex++;
+				if (questionIndex < currentQuestions.length) {
+					showQuestion();
+				} else {
+					showResults();
+				}
+			}
+
+			function showResults() {
+				document
+					.getElementById("quiz-container")
+					.classList.add("hidden");
+				document
+					.getElementById("result-screen")
+					.classList.remove("hidden");
+
+				const scoreText = document.getElementById("score-text");
+				const icon = document.getElementById("result-icon");
+				const msg = document.getElementById("motivational-msg");
+
+				scoreText.innerText = `Twój wynik to ${score} / ${currentQuestions.length}`;
+
+				if (score === currentQuestions.length) {
+					icon.className = "fas fa-crown gold";
+					msg.innerText = "Genialnie! Jesteś matematycznym mistrzem!";
+				} else if (score >= 3) {
+					icon.className = "fas fa-star silver";
+					msg.innerText =
+						"Bardzo dobrze! Jeszcze trochę i będzie idealnie.";
+				} else {
+					icon.className = "fas fa-graduation-cap";
+					msg.innerText =
+						"Dobra próba! Poćwicz jeszcze chwilę i wróć do nas.";
+				}
+			}
+
+			function goToMenu() {
+				document.getElementById("menu").classList.remove("hidden");
+				document.getElementById("header").classList.remove("hidden");
+				document
+					.getElementById("quiz-container")
+					.classList.add("hidden");
+				document
+					.getElementById("result-screen")
+					.classList.add("hidden");
+			}
+		</script>
+	</body>
+</html>

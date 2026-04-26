@@ -1,0 +1,246 @@
+/* Reset i zmienne */
+:root {
+	--primary: #4a90e2;
+	--secondary: #6c5ce7;
+	--bg: #f0f4f8;
+	--card-bg: #ffffff;
+	--text: #2d3436;
+	--success: #2ecc71;
+	--error: #ff7675;
+	--shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	background-color: var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+	padding-bottom: 50px;
+}
+
+/* Layout */
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* Header */
+header {
+	text-align: center;
+	padding: 60px 20px;
+	background: linear-gradient(135deg, var(--primary), var(--secondary));
+	color: white;
+	border-radius: 0 0 50px 50px;
+	margin-bottom: 40px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+	font-size: 2.5rem;
+	margin-bottom: 10px;
+}
+
+/* Menu kart */
+#menu {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+}
+
+.card {
+	background: var(--card-bg);
+	padding: 30px;
+	border-radius: 20px;
+	text-align: center;
+	cursor: pointer;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+	box-shadow: var(--shadow);
+	border: 2px solid transparent;
+}
+
+.card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+	border-color: var(--primary);
+}
+
+.card i {
+	font-size: 3rem;
+	color: var(--primary);
+	margin-bottom: 20px;
+}
+
+.card h3 {
+	margin-bottom: 10px;
+	font-size: 1.4rem;
+}
+
+/* Quiz UI */
+#quiz-container {
+	background: var(--card-bg);
+	border-radius: 25px;
+	padding: 40px;
+	box-shadow: var(--shadow);
+	margin-top: 40px;
+}
+
+.quiz-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+#progress-bar-container {
+	flex-grow: 1;
+	height: 12px;
+	background: #e0e0e0;
+	border-radius: 10px;
+	margin: 0 20px;
+	overflow: hidden;
+}
+
+#progress-bar {
+	height: 100%;
+	background: var(--success);
+	width: 0%;
+	transition: width 0.4s ease;
+}
+
+.btn-back {
+	background: none;
+	border: none;
+	color: var(--primary);
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+/* Pytania i opcje */
+#question-text {
+	font-size: 1.6rem;
+	margin-bottom: 30px;
+	color: #2c3e50;
+}
+
+#options-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
+
+@media (max-width: 600px) {
+	#options-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.option-btn {
+	padding: 18px;
+	font-size: 1.1rem;
+	background: #f8f9fa;
+	border: 2px solid #e9ecef;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+	background: #eef2f7;
+	border-color: var(--primary);
+}
+
+.option-btn.correct {
+	background-color: var(--success) !important;
+	color: white;
+	border-color: #27ae60;
+}
+
+.option-btn.wrong {
+	background-color: var(--error) !important;
+	color: white;
+	border-color: #c0392b;
+}
+
+/* Feedback */
+#feedback {
+	margin-top: 30px;
+	padding: 20px;
+	background: #f8f9fa;
+	border-radius: 15px;
+	text-align: center;
+	animation: fadeIn 0.5s ease;
+}
+
+#feedback-msg {
+	font-weight: bold;
+	margin-bottom: 15px;
+	font-size: 1.1rem;
+}
+
+#next-btn {
+	padding: 12px 30px;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+/* Wynik */
+.result-card {
+	text-align: center;
+	padding: 50px;
+	background: white;
+	border-radius: 30px;
+	box-shadow: var(--shadow);
+}
+
+#result-icon {
+	font-size: 5rem;
+	margin-bottom: 20px;
+}
+
+.gold {
+	color: #f1c40f;
+}
+.silver {
+	color: #bdc3c7;
+}
+
+.btn-primary {
+	margin-top: 30px;
+	padding: 15px 40px;
+	background: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 30px;
+	font-size: 1.2rem;
+	cursor: pointer;
+	box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
