@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mistrz Działań Pisemnych</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/style_pisemne.css" />
+	</head>
+	<body class="min-h-screen flex flex-col items-center justify-center p-4">
+		<div class="stars"></div>
+
+		<!-- Menu Główne -->
+		<div id="main-menu" class="max-w-4xl w-full text-center fade-in py-10">
+			<div class="text-center mb-4">
+				<a href="gry.html">
+					<button
+						onclick="backToMain()"
+						class="px-8 py-3 bg-indigo-500/20 hover:bg-indigo-500/40 rounded-full text-indigo-200 font-bold border border-indigo-500/30 transition"
+					>
+						⬅️ Powrót do bazy
+					</button></a
+				>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+				<button
+					onclick="selectDifficulty('add')"
+					class="menu-card p-10 rounded-[40px] text-left flex items-center gap-8 border-l-[12px] border-l-blue-600"
+				>
+					<div
+						class="w-24 h-24 bg-blue-600/30 rounded-3xl flex items-center justify-center text-5xl shadow-lg"
+					>
+						➕
+					</div>
+					<div>
+						<div class="text-3xl font-extrabold text-white">
+							Dodawanie
+						</div>
+						<div class="text-blue-200 text-lg">Suma w słupku</div>
+					</div>
+				</button>
+				<button
+					onclick="selectDifficulty('sub')"
+					class="menu-card p-10 rounded-[40px] text-left flex items-center gap-8 border-l-[12px] border-l-red-600"
+				>
+					<div
+						class="w-24 h-24 bg-red-600/30 rounded-3xl flex items-center justify-center text-5xl shadow-lg"
+					>
+						➖
+					</div>
+					<div>
+						<div class="text-3xl font-extrabold text-white">
+							Odejmowanie
+						</div>
+						<div class="text-red-200 text-lg">
+							Różnica z pożyczaniem
+						</div>
+					</div>
+				</button>
+				<button
+					onclick="selectDifficulty('mul')"
+					class="menu-card p-10 rounded-[40px] text-left flex items-center gap-8 border-l-[12px] border-l-orange-600"
+				>
+					<div
+						class="w-24 h-24 bg-orange-600/30 rounded-3xl flex items-center justify-center text-5xl shadow-lg"
+					>
+						✖️
+					</div>
+					<div>
+						<div class="text-3xl font-extrabold text-white">
+							Mnożenie
+						</div>
+						<div class="text-orange-200 text-lg">
+							Wyniki częściowe
+						</div>
+					</div>
+				</button>
+				<button
+					onclick="selectDifficulty('div')"
+					class="menu-card p-10 rounded-[40px] text-left flex items-center gap-8 border-l-[12px] border-l-green-600"
+				>
+					<div
+						class="w-24 h-24 bg-green-600/30 rounded-3xl flex items-center justify-center text-5xl shadow-lg"
+					>
+						➗
+					</div>
+					<div>
+						<div class="text-3xl font-extrabold text-white">
+							Dzielenie
+						</div>
+						<div class="text-green-200 text-lg">
+							Iloraz z kreską
+						</div>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<!-- Wybór Poziomu -->
+		<div
+			id="difficulty-screen"
+			class="hidden max-w-2xl w-full text-center fade-in py-10"
+		>
+			<h2
+				id="difficulty-title"
+				class="text-6xl font-black mb-12 text-white italic"
+			>
+				Wybierz wyzwanie
+			</h2>
+			<div class="flex flex-col gap-6">
+				<button
+					onclick="startGame('easy')"
+					class="difficulty-btn p-10 rounded-[35px] text-center group"
+				>
+					<div
+						class="text-4xl font-black text-white mb-2 group-hover:text-yellow-300 transition-colors"
+					>
+						Łatwy
+					</div>
+					<div class="text-indigo-100 text-xl opacity-80">
+						Liczby są już wpisane w arkusz
+					</div>
+				</button>
+				<button
+					onclick="startGame('hard')"
+					class="difficulty-btn p-10 rounded-[35px] text-center group"
+				>
+					<div
+						class="text-4xl font-black text-white mb-2 group-hover:text-red-400 transition-colors"
+					>
+						Trudny
+					</div>
+					<div class="text-indigo-100 text-xl opacity-80">
+						Musisz sam poprawnie zapisać działanie
+					</div>
+				</button>
+				<button
+					onclick="showMenu()"
+					class="text-indigo-300 font-bold hover:text-white mt-6 text-xl transition-colors"
+				>
+					← Wróć do menu głównego
+				</button>
+			</div>
+		</div>
+
+		<!-- Ekran Gry -->
+		<div
+			id="game-screen"
+			class="hidden w-full max-w-6xl flex flex-col items-center fade-in"
+		>
+			<div
+				class="w-full flex justify-between items-center mb-10 px-10 py-8 bg-white/5 rounded-[40px] backdrop-blur-2xl border border-white/10 shadow-2xl"
+			>
+				<button
+					onclick="showMenu()"
+					class="px-8 py-4 bg-white/10 hover:bg-white/20 rounded-2xl font-black transition-all text-white flex items-center gap-3"
+				>
+					<span class="text-2xl">←</span> MENU
+				</button>
+				<div class="text-center">
+					<div
+						id="task-info"
+						class="text-4xl font-black text-white tracking-widest uppercase italic"
+					>
+						Zadanie
+					</div>
+					<div
+						id="problem-display"
+						class="text-indigo-300 font-mono text-3xl mt-3 font-bold bg-white/10 px-6 py-2 rounded-full hidden"
+					></div>
+				</div>
+				<div
+					id="score-badge"
+					class="bg-gradient-to-br from-indigo-500 to-purple-700 text-white px-10 py-4 rounded-3xl font-black text-2xl border border-white/20"
+				>
+					0 PKT
+				</div>
+			</div>
+
+			<div
+				id="math-container"
+				class="w-full flex justify-center p-14 bg-white/5 rounded-[60px] border border-white/10 min-h-[550px] items-center overflow-x-auto"
+			>
+				<!-- Dynamiczna Siatka -->
+			</div>
+
+			<div class="mt-12 flex flex-col sm:flex-row gap-8 items-center">
+				<button
+					onclick="checkResult()"
+					class="px-24 py-8 bg-indigo-600 hover:bg-indigo-500 text-white rounded-[32px] font-black text-4xl shadow-2xl shadow-indigo-600/50 transition-all active:scale-95 border-b-8 border-indigo-800"
+				>
+					SPRAWDŹ WYNIK
+				</button>
+				<button
+					onclick="generateTask()"
+					class="px-14 py-8 bg-white/10 hover:bg-white/20 text-white rounded-[32px] font-bold text-2xl transition-all border border-white/20 shadow-xl"
+				>
+					NOWE ZADANIE
+				</button>
+			</div>
+			<div
+				id="status-msg"
+				class="mt-10 text-5xl font-black h-16 drop-shadow-lg text-center"
+			></div>
+		</div>
+
+		<script>
+			let currentMode = "";
+			let difficulty = "easy";
+			let score = 0;
+
+			function showMenu() {
+				document.getElementById("main-menu").classList.remove("hidden");
+				document
+					.getElementById("difficulty-screen")
+					.classList.add("hidden");
+				document.getElementById("game-screen").classList.add("hidden");
+			}
+
+			function selectDifficulty(mode) {
+				currentMode = mode;
+				const titles = {
+					add: "Dodawanie",
+					sub: "Odejmowanie",
+					mul: "Mnożenie",
+					div: "Dzielenie",
+				};
+				document.getElementById("difficulty-title").innerText =
+					titles[mode];
+				document.getElementById("main-menu").classList.add("hidden");
+				document
+					.getElementById("difficulty-screen")
+					.classList.remove("hidden");
+			}
+
+			function startGame(level) {
+				difficulty = level;
+				document
+					.getElementById("difficulty-screen")
+					.classList.add("hidden");
+				document
+					.getElementById("game-screen")
+					.classList.remove("hidden");
+				const titles = {
+					add: "DODAWANIE",
+					sub: "ODEJMOWANIE",
+					mul: "MNOŻENIE",
+					div: "DZIELENIE",
+				};
+				document.getElementById("task-info").innerText =
+					titles[currentMode];
+				generateTask();
+			}
+
+			function createCell(
+				content = "",
+				isInput = false,
+				answer = "",
+				type = "normal",
+			) {
+				const div = document.createElement("div");
+				div.className = "cell";
+
+				if (isInput) {
+					const input = document.createElement("input");
+					input.type = "text";
+					input.maxLength = 1;
+					input.className = "cell-input";
+					if (type === "memory") input.classList.add("cell-memory");
+					if (answer !== null && answer !== "")
+						input.dataset.answer = answer;
+
+					input.addEventListener("input", (e) => {
+						if (e.target.value.length === 1) {
+							const all = Array.from(
+								document.querySelectorAll(".cell-input"),
+							);
+							const currentIdx = all.indexOf(input);
+							const next = all[currentIdx + 1];
+							if (next) next.focus();
+						}
+					});
+
+					div.appendChild(input);
+				} else {
+					div.innerText = content;
+					if (["+", "-", "⋅", ":"].includes(content)) {
+						div.classList.add("operator");
+						if (content === "+") div.classList.add("op-add");
+						if (content === "-") div.classList.add("op-sub");
+						if (content === "⋅") div.classList.add("op-mul");
+						if (content === ":") div.classList.add("op-div");
+					}
+				}
+				return div;
+			}
+
+			function generateTask() {
+				const container = document.getElementById("math-container");
+				const probDisplay = document.getElementById("problem-display");
+				container.innerHTML = "";
+				document.getElementById("status-msg").innerText = "";
+
+				probDisplay.classList.remove("hidden");
+
+				if (currentMode === "add") renderAddSub("+", container);
+				else if (currentMode === "sub") renderAddSub("-", container);
+				else if (currentMode === "mul") renderMul(container);
+				else if (currentMode === "div") renderDiv(container);
+			}
+
+			function getRandomNumbers() {
+				const lengths = [2, 3, 4];
+				const l1 = lengths[Math.floor(Math.random() * lengths.length)];
+				const l2 = lengths[Math.floor(Math.random() * lengths.length)];
+				const n1 = Math.floor(
+					Math.pow(10, l1 - 1) +
+						Math.random() *
+							(Math.pow(10, l1) - Math.pow(10, l1 - 1)),
+				);
+				const n2 = Math.floor(
+					Math.pow(10, l2 - 1) +
+						Math.random() *
+							(Math.pow(10, l2) - Math.pow(10, l2 - 1)),
+				);
+				return [n1, n2];
+			}
+
+			function renderAddSub(op, container) {
+				let [n1, n2] = getRandomNumbers();
+				if (op === "-" && n2 > n1) [n1, n2] = [n2, n1];
+
+				const res = op === "+" ? n1 + n2 : n1 - n2;
+				const s1 = String(n1),
+					s2 = String(n2),
+					sRes = String(res);
+				// Szerokość zależy od najdłuższej liczby + miejsce na znak
+				const width = Math.max(s1.length, s2.length, sRes.length) + 1;
+
+				document.getElementById("problem-display").innerText =
+					`${n1} ${op} ${n2} = ?`;
+
+				const grid = document.createElement("div");
+				grid.className = "math-grid";
+				grid.style.setProperty("--cols", width);
+
+				// Memory - zawsze pełna szerokość
+				for (let i = 0; i < width; i++)
+					grid.appendChild(createCell("", true, null, "memory"));
+
+				// N1
+				s1.padStart(width, " ")
+					.split("")
+					.forEach((c, idx) => {
+						const char = c.trim();
+						const isField = difficulty === "hard" ? idx > 0 : false; // W trudnym dajemy kratki na całą szerokość (poza miejscem na znak)
+						grid.appendChild(
+							createCell(
+								difficulty === "easy" ? char : "",
+								isField,
+								char,
+							),
+						);
+					});
+
+				// Operator + N2
+				grid.appendChild(createCell(op));
+				const s2Padded = s2.padStart(width - 1, " ");
+				s2Padded.split("").forEach((c) => {
+					const char = c.trim();
+					const isField = difficulty === "hard"; // W trudnym dajemy kratki na całą szerokość pod drugą liczbę
+					grid.appendChild(
+						createCell(
+							difficulty === "easy" ? char : "",
+							isField,
+							char,
+						),
+					);
+				});
+
+				// Line
+				for (let i = 0; i < width; i++)
+					grid.appendChild(createCell()).classList.add("line-bottom");
+
+				// Result
+				sRes.padStart(width, " ")
+					.split("")
+					.forEach((c) => {
+						const char = c.trim();
+						grid.appendChild(createCell("", char !== "", char));
+					});
+
+				container.appendChild(grid);
+			}
+
+			function renderMul(container) {
+				const n1 = Math.floor(Math.random() * 800) + 100;
+				const n2 = Math.floor(Math.random() * 80) + 11;
+				const s1 = String(n1),
+					s2 = String(n2);
+
+				document.getElementById("problem-display").innerText =
+					`${n1} ⋅ ${n2} = ?`;
+
+				const ones = parseInt(s2[1]);
+				const tens = parseInt(s2[0]);
+				const p1 = n1 * ones;
+				const p2 = n1 * tens;
+				const total = n1 * n2;
+
+				const sP1 = String(p1);
+				const sP2 = String(p2);
+				const sTotal = String(total);
+				const width = sTotal.length + 1;
+
+				const grid = document.createElement("div");
+				grid.className = "math-grid";
+				grid.style.setProperty("--cols", width);
+
+				// Memory
+				for (let k = 0; k < 2; k++)
+					for (let i = 0; i < width; i++)
+						grid.appendChild(createCell("", true, null, "memory"));
+
+				// Pierwszy czynnik
+				s1.padStart(width, " ")
+					.split("")
+					.forEach((c, idx) => {
+						const char = c.trim();
+						const isField = difficulty === "hard" ? idx > 0 : false;
+						grid.appendChild(
+							createCell(
+								difficulty === "easy" ? char : "",
+								isField,
+								char,
+							),
+						);
+					});
+
+				// Znak + Drugi czynnik
+				grid.appendChild(createCell("⋅"));
+				s2.padStart(width - 1, " ")
+					.split("")
+					.forEach((c) => {
+						const char = c.trim();
+						const isField = difficulty === "hard";
+						grid.appendChild(
+							createCell(
+								difficulty === "easy" ? char : "",
+								isField,
+								char,
+							),
+						);
+					});
+
+				for (let i = 0; i < width; i++)
+					grid.appendChild(createCell()).classList.add("line-bottom");
+
+				// Wyniki pośrednie i suma końcowa
+				sP1.padStart(width, " ")
+					.split("")
+					.forEach((c) =>
+						grid.appendChild(createCell("", c !== " ", c.trim())),
+					);
+				grid.appendChild(createCell("+"));
+				sP2.padStart(width - 1, " ")
+					.split("")
+					.forEach((c) =>
+						grid.appendChild(createCell("", c !== " ", c.trim())),
+					);
+
+				for (let i = 0; i < width; i++)
+					grid.appendChild(createCell()).classList.add("line-bottom");
+
+				sTotal
+					.padStart(width, " ")
+					.split("")
+					.forEach((c) =>
+						grid.appendChild(createCell("", c !== " ", c.trim())),
+					);
+
+				container.appendChild(grid);
+			}
+
+			function renderDiv(container) {
+				const n2 = Math.floor(Math.random() * 8) + 2;
+				const res = Math.floor(Math.random() * 400) + 12;
+				const n1 = res * n2;
+				const s1 = String(n1),
+					sRes = String(res);
+				const s2 = String(n2);
+				const width = s1.length + 1 + s2.length;
+
+				document.getElementById("problem-display").innerText =
+					`${n1} : ${n2} = ?`;
+
+				const grid = document.createElement("div");
+				grid.className = "math-grid";
+				grid.style.setProperty("--cols", width);
+
+				// Wynik na górze (zawsze 4 kratki lub szerokość dzielnej)
+				const resultWidth = Math.max(s1.length, 4);
+				for (let i = 0; i < resultWidth; i++) {
+					const char = sRes.padStart(resultWidth, " ")[i];
+					grid.appendChild(createCell("", true, char.trim()));
+				}
+				for (let i = 0; i < width - resultWidth; i++)
+					grid.appendChild(createCell(""));
+
+				// Kreska
+				for (let i = 0; i < resultWidth; i++)
+					grid.appendChild(createCell()).classList.add("line-top");
+				for (let i = 0; i < width - resultWidth; i++)
+					grid.appendChild(createCell(""));
+
+				// Działanie
+				s1.split("").forEach((c) => {
+					const char = c.trim();
+					const isField = difficulty === "hard";
+					grid.appendChild(
+						createCell(
+							difficulty === "easy" ? char : "",
+							isField,
+							char,
+						),
+					);
+				});
+				grid.appendChild(createCell(":"));
+				s2.split("").forEach((c) => {
+					const char = c.trim();
+					const isField = difficulty === "hard";
+					grid.appendChild(
+						createCell(
+							difficulty === "easy" ? char : "",
+							isField,
+							char,
+						),
+					);
+				});
+
+				// Kratki robocze
+				for (let r = 0; r < 10; r++) {
+					for (let c = 0; c < width; c++) {
+						grid.appendChild(createCell("", true, null));
+					}
+				}
+
+				container.appendChild(grid);
+			}
+
+			function checkResult() {
+				const inputs = document.querySelectorAll(
+					".cell-input:not(.cell-memory)",
+				);
+				let allCorrect = true,
+					count = 0;
+
+				inputs.forEach((input) => {
+					const ans = input.dataset.answer;
+					if (ans === undefined || ans === "") return;
+					count++;
+					if (input.value === ans) {
+						input.classList.add("correct");
+						input.classList.remove("incorrect");
+					} else {
+						input.classList.add("incorrect");
+						input.classList.remove("correct");
+						allCorrect = false;
+					}
+				});
+
+				const status = document.getElementById("status-msg");
+				if (allCorrect && count > 0) {
+					status.innerText = "GENIALNIE! ⭐⭐⭐";
+					status.className =
+						"mt-10 text-5xl font-black text-emerald-400 animate-bounce text-center drop-shadow-xl";
+					score += difficulty === "hard" ? 30 : 10;
+					document.getElementById("score-badge").innerText =
+						`${score} PKT`;
+				} else {
+					status.innerText = "SPRÓBUJ JESZCZE RAZ!";
+					status.className =
+						"mt-10 text-5xl font-black text-rose-500 text-center drop-shadow-xl";
+				}
+			}
+
+			window.onload = showMenu;
+		</script>
+	</body>
+</html>

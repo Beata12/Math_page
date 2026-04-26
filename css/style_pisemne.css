@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap");
+
+body {
+	font-family: "Plus Jakarta Sans", sans-serif;
+	background: #25215e;
+	color: #ffffff;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.stars {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 50% 50%, #2e2a7a 0%, #25215e 100%);
+	z-index: -1;
+}
+
+/* Siatka matematyczna */
+.math-grid {
+	display: inline-grid;
+	grid-template-columns: repeat(var(--cols), 46px);
+	font-family: "Roboto Mono", monospace;
+	background: white;
+	padding: 30px;
+	border-radius: 20px;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+	color: #1e293b;
+}
+
+.cell {
+	width: 46px;
+	height: 46px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.cell-input {
+	width: 42px;
+	height: 42px;
+	text-align: center;
+	border: 2px solid #cbd5e1;
+	border-radius: 6px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #0f172a;
+	background: #f1f5f9;
+	transition: all 0.2s;
+}
+
+.cell-input:focus {
+	outline: none;
+	border-color: #4f46e5;
+	background: #ffffff;
+	box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+.cell-memory {
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	color: #dc2626;
+	border: 1px dashed #ef4444;
+	background: #fef2f2;
+}
+
+.correct {
+	background-color: #bbf7d0 !important;
+	border-color: #16a34a !important;
+	color: #14532d !important;
+}
+.incorrect {
+	background-color: #fecaca !important;
+	border-color: #dc2626 !important;
+	color: #7f1d1d !important;
+}
+
+.line-bottom {
+	border-bottom: 4px solid #0f172a;
+}
+.line-top {
+	border-top: 4px solid #0f172a;
+}
+
+.operator {
+	font-size: 26px;
+	font-weight: 900;
+}
+
+/* Kolory operacji */
+.op-add {
+	color: #2563eb;
+}
+.op-sub {
+	color: #dc2626;
+}
+.op-mul {
+	color: #ea580c;
+}
+.op-div {
+	color: #16a34a;
+}
+
+.menu-card {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(12px);
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-card:hover {
+	transform: translateY(-10px);
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.difficulty-btn {
+	background: rgba(255, 255, 255, 0.08);
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	transition: all 0.2s;
+}
+
+.difficulty-btn:hover {
+	transform: scale(1.05);
+	background: #4f46e5;
+	border-color: #818cf8;
+}
+
+.fade-in {
+	animation: fadeIn 0.4s ease-out forwards;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
