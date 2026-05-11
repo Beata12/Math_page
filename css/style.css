@@ -1,113 +1,73 @@
-/* Import nowoczesnej czcionki */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap");
-
-/* Podstawowe style */
-body {
-	font-family: "Plus Jakarta Sans", sans-serif;
-	scroll-behavior: smooth;
-	overflow-x: hidden;
+:root {
+	--c-bg: #fdf7ee;
+	--c-primary: #ff6b35; /* pomarańcz – energia */
+	--c-secondary: #4ecdc4; /* turkus – spokój */
+	--c-accent: #ffe66d; /* żółty – ciekawość */
+	--c-purple: #a29bfe; /* fiolet – kreatywność */
+	--c-green: #55efc4; /* mięta – świeżość */
+	--c-text: #2d3436;
+	--c-muted: #636e72;
+	--c-card-bg: #ffffff;
+	--radius-lg: 24px;
+	--radius-xl: 36px;
+	--shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	--shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.16);
+	--font-display: "Baloo 2", cursive;
+	--font-body: "Nunito", sans-serif;
+	--yellow: #ffd93d;
+	--orange: #ff6b35;
+	--pink: #ff6fa8;
+	--purple: #a084e8;
+	--blue: #4cc9f0;
+	--green: #6bcb77;
+	--teal: #00c9a7;
+	--red: #ff595e;
+	--bg: #fffbf0;
+	--text: #2d2a3e;
+	--white: #ffffff;
+	--radius: 24px;
 }
 
-/* Szklany efekt nawigacji */
-.glass-card {
-	background: rgba(255, 255, 255, 0.8);
-	backdrop-filter: blur(10px);
-	border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Gradienty tła */
-.hero-gradient {
-	background:
-		radial-gradient(circle at top right, #4f46e5, transparent),
-		radial-gradient(circle at bottom left, #ec4899, transparent);
-}
-
-/* Efekt unoszenia kart */
-.hover-lift {
-	transition:
-		transform 0.3s ease,
-		box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-/* Animacja pływania obrazka */
-@keyframes float {
-	0% {
-		transform: translateY(0px);
-	}
-	50% {
-		transform: translateY(-15px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
-}
-
-.animate-float {
-	animation: float 4s ease-in-out infinite;
-}
-
-/* Dekoracyjne koła z ikonami */
-.icon-circle {
-	width: 64px;
-	height: 64px;
-	border-radius: 9999px;
-	border: 4px solid white;
+nav {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: rgba(253, 247, 238, 0.92);
+	backdrop-filter: blur(12px);
+	border-bottom: 2px solid var(--c-accent);
+	padding: 0 2rem;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	color: white;
-	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	justify-content: space-between;
+	height: 68px;
 }
 
-/* Karta gry */
-.card-game {
-	background: #f8fafc;
-	padding: 2rem;
-	border-radius: 1.5rem;
-	border: 1px solid #f1f5f9;
-	transition: all 0.3s ease;
-	cursor: pointer;
+.nav-logo {
+	font-family: var(--font-display);
+	font-size: 1.6rem;
+	font-weight: 800;
+	color: var(--c-primary);
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	text-decoration: none;
+}
+.nav-logo span {
+	color: var(--c-secondary);
 }
 
-.card-game:hover {
-	background: #4f46e5;
-	color: white;
-	transform: translateY(-5px);
+.nav-links {
+	display: flex;
+	gap: 1.8rem;
+	list-style: none;
 }
-
-.card-game h3 {
-	font-size: 1.25rem;
+.nav-links a {
+	text-decoration: none;
 	font-weight: 700;
-	margin-bottom: 0.5rem;
+	color: var(--c-text);
+	font-size: 0.95rem;
+	transition: color 0.2s;
 }
-
-.card-game p {
-	color: #64748b;
-	margin-bottom: 1.5rem;
-}
-
-.card-game:hover p {
-	color: #e0e7ff;
-}
-
-.icon-bg {
-	width: 56px;
-	height: 56px;
-	border-radius: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 1.5rem;
-	transition: all 0.3s ease;
-}
-
-.card-game:hover .icon-bg {
-	background: #6366f1;
-	color: white;
+.nav-links a:hover {
+	color: var(--c-primary);
 }

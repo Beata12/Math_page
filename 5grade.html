@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matematyka – Klasa 5 | MatiLand</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			/* ─── Zmienne ─────────────────────────────────────────── */
+			:root {
+				--bg: #0f1117;
+				--bg2: #181c27;
+				--surface: #1e2436;
+				--border: rgba(255, 255, 255, 0.07);
+
+				--c1: #6c63ff; /* violet  */
+				--c2: #ff6b6b; /* coral   */
+				--c3: #43e97b; /* mint    */
+				--c4: #f7971e; /* amber   */
+				--c5: #38b6ff; /* sky     */
+				--c6: #f64f59; /* red     */
+				--c7: #a18cd1; /* lilac   */
+
+				--text: #e8eaf6;
+				--muted: #8b92b8;
+				--radius: 18px;
+				--shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+			}
+
+			/* ─── Reset ───────────────────────────────────────────── */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: "Nunito", sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			/* ─── Background grid pattern ────────────────────────── */
+			body::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+				background-image:
+					linear-gradient(
+						rgba(108, 99, 255, 0.04) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						90deg,
+						rgba(108, 99, 255, 0.04) 1px,
+						transparent 1px
+					);
+				background-size: 44px 44px;
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			/* ─── Floating orbs ──────────────────────────────────── */
+			.orb {
+				position: fixed;
+				border-radius: 50%;
+				filter: blur(90px);
+				pointer-events: none;
+				z-index: 0;
+				animation: drift 14s ease-in-out infinite alternate;
+			}
+			.orb1 {
+				width: 380px;
+				height: 380px;
+				background: rgba(108, 99, 255, 0.18);
+				top: -100px;
+				left: -120px;
+				animation-delay: 0s;
+			}
+			.orb2 {
+				width: 300px;
+				height: 300px;
+				background: rgba(255, 107, 107, 0.15);
+				bottom: 80px;
+				right: -100px;
+				animation-delay: -6s;
+			}
+			.orb3 {
+				width: 250px;
+				height: 250px;
+				background: rgba(67, 233, 123, 0.1);
+				top: 40%;
+				left: 55%;
+				animation-delay: -3s;
+			}
+
+			@keyframes drift {
+				from {
+					transform: translate(0, 0) scale(1);
+				}
+				to {
+					transform: translate(30px, 20px) scale(1.05);
+				}
+			}
+
+			/* ─── Wrapper ─────────────────────────────────────────── */
+			.wrapper {
+				position: relative;
+				z-index: 1;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			/* ─── HERO ────────────────────────────────────────────── */
+			.hero {
+				position: relative;
+				padding: 56px 0 52px;
+				text-align: center;
+			}
+
+			.back-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				color: var(--muted);
+				padding: 10px 20px;
+				border-radius: 50px;
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				transition: all 0.25s;
+				margin-bottom: 40px;
+			}
+			.back-btn:hover {
+				background: var(--c1);
+				color: #fff;
+				border-color: var(--c1);
+				transform: translateX(-3px);
+			}
+			.back-btn svg {
+				width: 16px;
+				height: 16px;
+			}
+
+			.badge {
+				display: inline-block;
+				background: linear-gradient(135deg, var(--c1), var(--c5));
+				color: #fff;
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				padding: 6px 18px;
+				border-radius: 50px;
+				margin-bottom: 20px;
+			}
+
+			.hero h1 {
+				font-family: "Righteous", sans-serif;
+				font-size: clamp(2.4rem, 7vw, 4.2rem);
+				line-height: 1.1;
+				background: linear-gradient(135deg, #fff 30%, var(--c1) 80%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 18px;
+			}
+
+			.hero p {
+				font-size: clamp(1rem, 2.5vw, 1.2rem);
+				color: var(--muted);
+				max-width: 560px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			.hero-stats {
+				display: flex;
+				justify-content: center;
+				gap: 32px;
+				margin-top: 40px;
+				flex-wrap: wrap;
+			}
+			.stat {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 4px;
+			}
+			.stat-num {
+				font-family: "Righteous", sans-serif;
+				font-size: 2rem;
+				color: var(--c1);
+			}
+			.stat-label {
+				font-size: 0.8rem;
+				color: var(--muted);
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+			}
+
+			/* ─── Divider ─────────────────────────────────────────── */
+			.divider {
+				height: 1px;
+				background: linear-gradient(
+					90deg,
+					transparent,
+					var(--border) 30%,
+					var(--border) 70%,
+					transparent
+				);
+				margin: 4px 0;
+			}
+
+			/* ─── Section title ───────────────────────────────────── */
+			.section-head {
+				text-align: center;
+				margin-bottom: 40px;
+			}
+			.section-head h2 {
+				font-family: "Righteous", sans-serif;
+				font-size: clamp(1.6rem, 4vw, 2.2rem);
+				margin-bottom: 10px;
+			}
+			.section-head p {
+				color: var(--muted);
+				font-size: 1rem;
+			}
+
+			/* ─── KAFELKI DZIAŁÓW ─────────────────────────────────── */
+			.topics {
+				padding: 60px 0;
+			}
+
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+				gap: 22px;
+			}
+
+			.card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 30px 26px;
+				cursor: pointer;
+				position: relative;
+				overflow: hidden;
+				transition:
+					transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+					box-shadow 0.3s,
+					border-color 0.3s;
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+			}
+
+			/* accent bar */
+			.card::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: var(--accent);
+				border-radius: var(--radius) var(--radius) 0 0;
+				transition: height 0.3s;
+			}
+
+			/* glow overlay */
+			.card::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(
+					circle at 50% 0%,
+					color-mix(in srgb, var(--accent) 14%, transparent),
+					transparent 70%
+				);
+				opacity: 0;
+				transition: opacity 0.35s;
+				pointer-events: none;
+			}
+
+			.card:hover {
+				transform: translateY(-8px) scale(1.01);
+				box-shadow:
+					var(--shadow),
+					0 0 30px color-mix(in srgb, var(--accent) 22%, transparent);
+				border-color: color-mix(
+					in srgb,
+					var(--accent) 50%,
+					transparent
+				);
+			}
+			.card:hover::before {
+				height: 6px;
+			}
+			.card:hover::after {
+				opacity: 1;
+			}
+
+			.card-icon {
+				width: 56px;
+				height: 56px;
+				border-radius: 14px;
+				background: color-mix(in srgb, var(--accent) 18%, transparent);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.7rem;
+				flex-shrink: 0;
+				transition: transform 0.3s;
+			}
+			.card:hover .card-icon {
+				transform: scale(1.12) rotate(-5deg);
+			}
+
+			.card-title {
+				font-family: "Righteous", sans-serif;
+				font-size: 1.18rem;
+				color: #fff;
+			}
+
+			.card-desc {
+				font-size: 0.88rem;
+				color: var(--muted);
+				line-height: 1.6;
+				flex: 1;
+			}
+
+			.card-arrow {
+				align-self: flex-end;
+				width: 34px;
+				height: 34px;
+				border-radius: 50%;
+				background: color-mix(in srgb, var(--accent) 20%, transparent);
+				border: 1px solid
+					color-mix(in srgb, var(--accent) 40%, transparent);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1rem;
+				transition:
+					background 0.3s,
+					transform 0.3s;
+				color: var(--accent);
+			}
+			.card:hover .card-arrow {
+				background: var(--accent);
+				color: #fff;
+				transform: translateX(4px);
+			}
+
+			/* ─── BANER MOTYWACYJNY ───────────────────────────────── */
+			.motivate {
+				padding: 0 0 60px;
+			}
+			.motivate-box {
+				background: linear-gradient(135deg, #1e2436 0%, #161928 100%);
+				border: 1px solid var(--border);
+				border-radius: 24px;
+				padding: 52px 40px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.motivate-box::before {
+				content: "✦";
+				position: absolute;
+				font-size: 20rem;
+				opacity: 0.03;
+				top: -60px;
+				left: -40px;
+				line-height: 1;
+				pointer-events: none;
+			}
+			.motivate-box h2 {
+				font-family: "Righteous", sans-serif;
+				font-size: clamp(1.5rem, 4vw, 2.4rem);
+				background: linear-gradient(135deg, var(--c3), var(--c5));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 14px;
+			}
+			.motivate-box p {
+				color: var(--muted);
+				font-size: 1.05rem;
+				max-width: 520px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			/* ─── CIEKAWOSTKA ────────────────────────────────────── */
+			.fact {
+				padding: 0 0 60px;
+			}
+
+			.fact-card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 24px;
+				padding: 40px;
+				display: flex;
+				gap: 28px;
+				align-items: flex-start;
+				position: relative;
+				overflow: hidden;
+			}
+			.fact-card::after {
+				content: "?";
+				position: absolute;
+				right: -10px;
+				top: -20px;
+				font-size: 14rem;
+				font-family: "Righteous", sans-serif;
+				opacity: 0.04;
+				line-height: 1;
+				pointer-events: none;
+			}
+			.fact-emoji {
+				font-size: 3.5rem;
+				flex-shrink: 0;
+				animation: wiggle 3s ease-in-out infinite;
+			}
+			@keyframes wiggle {
+				0%,
+				100% {
+					transform: rotate(0);
+				}
+				25% {
+					transform: rotate(-8deg);
+				}
+				75% {
+					transform: rotate(8deg);
+				}
+			}
+			.fact-content {
+			}
+			.fact-label {
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--c4);
+				margin-bottom: 10px;
+			}
+			.fact-content h3 {
+				font-family: "Righteous", sans-serif;
+				font-size: 1.35rem;
+				color: #fff;
+				margin-bottom: 12px;
+			}
+			.fact-content p {
+				color: var(--muted);
+				line-height: 1.7;
+				font-size: 0.97rem;
+			}
+			.fact-content strong {
+				color: var(--c4);
+			}
+
+			/* ─── SLIDER CYTATÓW ─────────────────────────────────── */
+			.quotes {
+				padding: 0 0 60px;
+			}
+
+			.slider-wrap {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 24px;
+				padding: 44px 40px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+				min-height: 180px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.quote-marks {
+				font-family: "Righteous", sans-serif;
+				font-size: 6rem;
+				line-height: 0.5;
+				color: var(--c1);
+				opacity: 0.25;
+				margin-bottom: 8px;
+			}
+			.quote-text {
+				font-family: "Righteous", sans-serif;
+				font-size: clamp(1.1rem, 3vw, 1.6rem);
+				color: #fff;
+				max-width: 680px;
+				line-height: 1.4;
+				opacity: 0;
+				transform: translateY(12px);
+				transition:
+					opacity 0.6s,
+					transform 0.6s;
+			}
+			.quote-text.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			.quote-author {
+				margin-top: 16px;
+				font-size: 0.85rem;
+				color: var(--muted);
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				opacity: 0;
+				transition: opacity 0.6s 0.2s;
+			}
+			.quote-author.visible {
+				opacity: 1;
+			}
+
+			.slider-dots {
+				display: flex;
+				gap: 8px;
+				margin-top: 24px;
+			}
+			.dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: var(--border);
+				transition:
+					background 0.3s,
+					transform 0.3s;
+				cursor: pointer;
+			}
+			.dot.active {
+				background: var(--c1);
+				transform: scale(1.4);
+			}
+
+			/* ─── STOPKA ─────────────────────────────────────────── */
+			footer {
+				background: var(--bg2);
+				border-top: 1px solid var(--border);
+				padding: 36px 24px;
+				text-align: center;
+			}
+			.footer-logo {
+				font-family: "Righteous", sans-serif;
+				font-size: 1.5rem;
+				background: linear-gradient(135deg, var(--c1), var(--c5));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 6px;
+			}
+			.footer-sub {
+				color: var(--muted);
+				font-size: 0.85rem;
+			}
+			.footer-sub span {
+				color: var(--c2);
+			}
+
+			/* ─── Responsive ─────────────────────────────────────── */
+			@media (max-width: 680px) {
+				.hero {
+					padding: 40px 0 36px;
+				}
+				.hero-stats {
+					gap: 20px;
+				}
+				.fact-card {
+					flex-direction: column;
+					gap: 16px;
+				}
+				.fact-card::after {
+					display: none;
+				}
+				.motivate-box {
+					padding: 36px 24px;
+				}
+				.slider-wrap {
+					padding: 32px 24px;
+				}
+			}
+
+			/* ─── Scroll-in animation ─────────────────────────────── */
+			.reveal {
+				opacity: 0;
+				transform: translateY(28px);
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s ease;
+			}
+			.reveal.in-view {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- floating orbs -->
+		<div class="orb orb1"></div>
+		<div class="orb orb2"></div>
+		<div class="orb orb3"></div>
+
+		<!-- ════════════════════ HERO ════════════════════ -->
+		<header>
+			<div class="wrapper">
+				<div class="hero">
+					<a
+						href="index.html"
+						class="back-btn"
+						aria-label="Powrót do strony głównej"
+					>
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+						Powrót do MatiLand
+					</a>
+
+					<div class="badge">Klasa 5 · Szkoła podstawowa</div>
+					<h1>Matematyka<br />– Klasa 5</h1>
+					<p>
+						Wybierz dział i zacznij swoją matematyczną przygodę!
+						Tutaj znajdziesz wszystko, czego potrzebujesz, żeby
+						rozumieć, a nie tylko liczyć.
+					</p>
+
+					<div class="hero-stats">
+						<div class="stat">
+							<span class="stat-num">7</span>
+							<span class="stat-label">Działów</span>
+						</div>
+						<div class="stat">
+							<span class="stat-num">5★</span>
+							<span class="stat-label">Poziom</span>
+						</div>
+						<div class="stat">
+							<span class="stat-num">∞</span>
+							<span class="stat-label">Możliwości</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="divider"></div>
+		</header>
+
+		<!-- ════════════════════ KAFELKI ════════════════════ -->
+		<section class="topics">
+			<div class="wrapper">
+				<div class="section-head reveal">
+					<h2>📚 Wybierz dział</h2>
+					<p>
+						Kliknij kafelek i zacznij naukę – każdy dział czeka na
+						Ciebie!
+					</p>
+				</div>
+
+				<div class="grid">
+					<div
+						class="card reveal"
+						style="--accent: var(--c1)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">🔢</div>
+						<div class="card-title">Liczby naturalne</div>
+						<div class="card-desc">
+							Działania na dużych liczbach, kolejność działań,
+							potęgowanie – fundament całej matematyki.
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c2)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">📐</div>
+						<div class="card-title">Figury geometryczne</div>
+						<div class="card-desc">
+							Trójkąty, czworokąty, wielokąty – kąty, symetria i
+							wszystko, co da się narysować.
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c3)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">½</div>
+						<div class="card-title">Ułamki zwykłe</div>
+						<div class="card-desc">
+							Licznik, mianownik, skracanie, dodawanie i
+							odejmowanie – ułamki nie będą Cię już straszyć!
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c4)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">0,5</div>
+						<div class="card-title">Ułamki dziesiętne</div>
+						<div class="card-desc">
+							Zapis dziesiętny, dodawanie, mnożenie przez 10, 100,
+							1000 – matematyka codziennego życia.
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c5)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">▭</div>
+						<div class="card-title">Pola figur</div>
+						<div class="card-desc">
+							Obliczanie pól prostokąta, kwadratu i trójkąta –
+							przydatne wszędzie, od pokoju po boisko.
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c7)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">🌍</div>
+						<div class="card-title">Matematyka i my</div>
+						<div class="card-desc">
+							Matematyka w praktyce – odczyty, wykresy, diagramy i
+							zadania tekstowe z prawdziwego życia.
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+
+					<div
+						class="card reveal"
+						style="--accent: var(--c6)"
+						onclick="topicClick(this)"
+					>
+						<div class="card-icon">🧊</div>
+						<div class="card-title">Figury przestrzenne</div>
+						<div class="card-desc">
+							Graniastosłupy, sześciany, walce – odkryj
+							trójwymiarowy świat geometrii!
+						</div>
+						<div class="card-arrow">→</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ════════════════════ MOTYWACJA ════════════════════ -->
+		<section class="motivate">
+			<div class="wrapper">
+				<div class="motivate-box reveal">
+					<h2>💪 Pokaż, na co Cię stać!</h2>
+					<p>
+						Wybierz dział i pokaż, że matematyka to Twoja mocna
+						strona! Każde zadanie, które rozwiążesz, to krok do
+						przodu – i trochę więcej mocy w głowie.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ════════════════════ CIEKAWOSTKA ════════════════════ -->
+		<section class="fact">
+			<div class="wrapper">
+				<div class="section-head reveal">
+					<h2>🤯 Ciekawostka matematyczna</h2>
+					<p>Czy wiedziałeś/aś, że...</p>
+				</div>
+				<div class="fact-card reveal">
+					<div class="fact-emoji">🐌</div>
+					<div class="fact-content">
+						<div class="fact-label">✦ Ciekawostka tygodnia</div>
+						<h3>Złota liczba, która jest wszędzie!</h3>
+						<p>
+							Istnieje specjalna liczba zwana
+							<strong>złotym podziałem (ok. 1,618)</strong>.
+							Znajdziesz ją w muszelkach ślimaków, kwiatach
+							słonecznika, a nawet w proporcjach ludzkiego ciała!
+							Starożytni Grecy uważali ją za najpiękniejszy
+							stosunek w przyrodzie i używali go do projektowania
+							świątyń. Matematyka jest dosłownie wbudowana w
+							przyrodę – wystarczy wiedzieć, gdzie patrzeć. 🌻
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ════════════════════ SLIDER CYTATÓW ════════════════════ -->
+		<section class="quotes">
+			<div class="wrapper">
+				<div class="section-head reveal">
+					<h2>💬 Inspiracje</h2>
+				</div>
+				<div class="slider-wrap reveal">
+					<div class="quote-marks">"</div>
+					<div class="quote-text" id="qText"></div>
+					<div class="quote-author" id="qAuthor"></div>
+					<div class="slider-dots" id="qDots"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ════════════════════ STOPKA ════════════════════ -->
+		<footer>
+			<div class="footer-logo">MatiLand</div>
+			<div class="footer-sub">
+				Matematyczna przygoda · Klasa 5 · <span>❤️</span> z pasją do
+				liczb
+			</div>
+		</footer>
+
+		<!-- ════════════════════ JAVASCRIPT ════════════════════ -->
+		<script>
+			/* ---------- Scroll reveal ---------- */
+			const revealEls = document.querySelectorAll(".reveal");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((e, i) => {
+						if (e.isIntersecting) {
+							setTimeout(
+								() => e.target.classList.add("in-view"),
+								i * 80,
+							);
+							observer.unobserve(e.target);
+						}
+					});
+				},
+				{ threshold: 0.12 },
+			);
+			revealEls.forEach((el) => observer.observe(el));
+
+			/* ---------- Card click ---------- */
+			function topicClick(card) {
+				const title = card.querySelector(".card-title").textContent;
+				card.style.transition = "transform .15s";
+				card.style.transform = "scale(.97)";
+				setTimeout(() => {
+					card.style.transform = "";
+					card.style.transition = "";
+					// alert(`Dział: ${title}\n(Tu możesz dodać link do podstrony działu)`);
+				}, 150);
+			}
+
+			/* ---------- Slider cytatów ---------- */
+			const quotes = [
+				{
+					text: "Matematyka to język, w którym napisał swoje myśli sam Bóg.",
+					author: "— Galileusz",
+				},
+				{
+					text: "Matematyka nie jest o liczbach. To myślenie.",
+					author: "— Dan Finkel",
+				},
+				{
+					text: "Każdy jest w stanie zrozumieć matematykę – potrzeba tylko odwagi i chwili skupienia.",
+					author: "— inspiracja MatiLand",
+				},
+				{
+					text: "Im więcej matematyki znasz, tym więcej możliwości przed Tobą stoi.",
+					author: "— inspiracja MatiLand",
+				},
+				{
+					text: "Matematyka to nie tylko szkoła – to supermoc na całe życie.",
+					author: "— inspiracja MatiLand",
+				},
+			];
+
+			let current = 0;
+			const qText = document.getElementById("qText");
+			const qAuthor = document.getElementById("qAuthor");
+			const qDots = document.getElementById("qDots");
+
+			// Build dots
+			quotes.forEach((_, i) => {
+				const dot = document.createElement("div");
+				dot.className = "dot" + (i === 0 ? " active" : "");
+				dot.onclick = () => showQuote(i);
+				qDots.appendChild(dot);
+			});
+
+			function showQuote(idx) {
+				current = idx;
+				qText.classList.remove("visible");
+				qAuthor.classList.remove("visible");
+				setTimeout(() => {
+					qText.textContent = quotes[idx].text;
+					qAuthor.textContent = quotes[idx].author;
+					qText.classList.add("visible");
+					qAuthor.classList.add("visible");
+				}, 300);
+				document
+					.querySelectorAll(".dot")
+					.forEach((d, i) => d.classList.toggle("active", i === idx));
+			}
+
+			showQuote(0);
+			setInterval(() => showQuote((current + 1) % quotes.length), 5000);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matematyka – Klasa 6 | MatiLand</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+				--bg: #0f1117;
+				--surface: #1a1d27;
+				--surface2: #222535;
+				--border: #2e3248;
+				--accent1: #6c63ff;
+				--accent2: #00d4aa;
+				--accent3: #ff6b6b;
+				--accent4: #ffd166;
+				--accent5: #4ecdc4;
+				--text: #e8eaf6;
+				--text-muted: #8b92b8;
+				--radius: 18px;
+				--shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: "Nunito", sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			/* ===== BACKGROUND GRID ===== */
+			body::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+				background-image:
+					linear-gradient(
+						rgba(108, 99, 255, 0.04) 1px,
+						transparent 1px
+					),
+					linear-gradient(
+						90deg,
+						rgba(108, 99, 255, 0.04) 1px,
+						transparent 1px
+					);
+				background-size: 40px 40px;
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			/* ===== HEADER ===== */
+			header {
+				position: relative;
+				z-index: 10;
+				padding: 0 24px;
+				overflow: hidden;
+			}
+
+			.header-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 56px 0 48px;
+			}
+
+			.back-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				color: var(--text-muted);
+				text-decoration: none;
+				padding: 9px 18px;
+				border-radius: 50px;
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.03em;
+				transition: all 0.25s;
+				margin-bottom: 36px;
+			}
+			.back-btn:hover {
+				background: var(--surface2);
+				color: var(--text);
+				border-color: var(--accent1);
+				transform: translateX(-3px);
+			}
+			.back-btn svg {
+				width: 16px;
+				height: 16px;
+			}
+
+			.badge {
+				display: inline-block;
+				background: linear-gradient(
+					135deg,
+					var(--accent1),
+					var(--accent2)
+				);
+				color: #fff;
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				padding: 5px 14px;
+				border-radius: 50px;
+				margin-bottom: 18px;
+			}
+
+			.header-title {
+				font-size: clamp(2.2rem, 5vw, 3.6rem);
+				font-weight: 900;
+				line-height: 1.1;
+				margin-bottom: 16px;
+				background: linear-gradient(
+					135deg,
+					#fff 30%,
+					var(--accent1) 80%,
+					var(--accent2) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.header-subtitle {
+				font-size: 1.05rem;
+				color: var(--text-muted);
+				max-width: 520px;
+				line-height: 1.6;
+			}
+
+			/* Decorative orbs */
+			.orb {
+				position: absolute;
+				border-radius: 50%;
+				filter: blur(80px);
+				pointer-events: none;
+			}
+			.orb-1 {
+				width: 380px;
+				height: 380px;
+				background: rgba(108, 99, 255, 0.18);
+				top: -100px;
+				right: -60px;
+			}
+			.orb-2 {
+				width: 220px;
+				height: 220px;
+				background: rgba(0, 212, 170, 0.12);
+				top: 60px;
+				right: 200px;
+			}
+
+			/* ===== STATS BAR ===== */
+			.stats-bar {
+				position: relative;
+				z-index: 10;
+				padding: 0 24px;
+				margin-bottom: 60px;
+			}
+			.stats-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				display: flex;
+				gap: 16px;
+				flex-wrap: wrap;
+			}
+			.stat-chip {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 50px;
+				padding: 10px 20px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				font-size: 0.88rem;
+				font-weight: 700;
+			}
+			.stat-chip .dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+			}
+
+			/* ===== SECTIONS ===== */
+			section {
+				position: relative;
+				z-index: 10;
+				padding: 0 24px;
+				margin-bottom: 72px;
+			}
+			.section-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+			}
+
+			.section-label {
+				font-family: "Space Mono", monospace;
+				font-size: 0.72rem;
+				letter-spacing: 0.15em;
+				text-transform: uppercase;
+				color: var(--accent1);
+				margin-bottom: 8px;
+			}
+			.section-title {
+				font-size: clamp(1.4rem, 3vw, 1.9rem);
+				font-weight: 900;
+				margin-bottom: 32px;
+				color: var(--text);
+			}
+
+			/* ===== TILES GRID ===== */
+			.tiles-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+				gap: 20px;
+			}
+
+			.tile {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 28px 26px;
+				cursor: pointer;
+				text-decoration: none;
+				color: inherit;
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+				transition:
+					transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+					box-shadow 0.28s,
+					border-color 0.28s,
+					background 0.28s;
+				position: relative;
+				overflow: hidden;
+			}
+			.tile::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(
+					135deg,
+					var(--tile-c1, var(--accent1)),
+					var(--tile-c2, var(--accent2))
+				);
+				opacity: 0;
+				transition: opacity 0.28s;
+				border-radius: inherit;
+			}
+			.tile:hover {
+				transform: translateY(-6px) scale(1.015);
+				box-shadow:
+					0 16px 48px rgba(0, 0, 0, 0.4),
+					0 0 0 1px var(--tile-c1, var(--accent1));
+				border-color: var(--tile-c1, var(--accent1));
+			}
+			.tile:hover::before {
+				opacity: 0.07;
+			}
+
+			.tile-icon {
+				width: 52px;
+				height: 52px;
+				background: linear-gradient(
+					135deg,
+					var(--tile-c1, var(--accent1)),
+					var(--tile-c2, var(--accent2))
+				);
+				border-radius: 14px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				flex-shrink: 0;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+				position: relative;
+				z-index: 1;
+			}
+
+			.tile-content {
+				position: relative;
+				z-index: 1;
+			}
+
+			.tile-title {
+				font-size: 1.05rem;
+				font-weight: 800;
+				color: var(--text);
+				margin-bottom: 6px;
+			}
+			.tile-desc {
+				font-size: 0.85rem;
+				color: var(--text-muted);
+				line-height: 1.55;
+			}
+
+			.tile-arrow {
+				margin-top: auto;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 0.8rem;
+				font-weight: 700;
+				color: var(--tile-c2, var(--accent2));
+				position: relative;
+				z-index: 1;
+				transition: gap 0.2s;
+			}
+			.tile:hover .tile-arrow {
+				gap: 10px;
+			}
+			.tile-arrow svg {
+				width: 14px;
+				height: 14px;
+			}
+
+			/* ===== MOTIVATION BANNER ===== */
+			.motivation-banner {
+				background: linear-gradient(135deg, #1e1b3a, #162b2a);
+				border: 1px solid var(--border);
+				border-radius: 24px;
+				padding: 48px 40px;
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+			.motivation-banner::before {
+				content: "∞";
+				position: absolute;
+				font-size: 260px;
+				font-weight: 900;
+				color: rgba(108, 99, 255, 0.05);
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				pointer-events: none;
+				line-height: 1;
+				user-select: none;
+			}
+			.motivation-banner .tag {
+				display: inline-block;
+				background: rgba(108, 99, 255, 0.18);
+				color: var(--accent1);
+				font-size: 0.75rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				padding: 5px 14px;
+				border-radius: 50px;
+				margin-bottom: 20px;
+			}
+			.motivation-banner h2 {
+				font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+				font-weight: 900;
+				background: linear-gradient(135deg, #fff, var(--accent2));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				max-width: 600px;
+				margin: 0 auto 16px;
+				line-height: 1.25;
+			}
+			.motivation-banner p {
+				color: var(--text-muted);
+				font-size: 0.95rem;
+			}
+
+			/* ===== TRIVIA CARD ===== */
+			.trivia-card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 32px 36px;
+				display: flex;
+				gap: 28px;
+				align-items: flex-start;
+			}
+			.trivia-icon {
+				width: 56px;
+				height: 56px;
+				flex-shrink: 0;
+				background: linear-gradient(135deg, var(--accent4), #ff9e2a);
+				border-radius: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.6rem;
+			}
+			.trivia-content h3 {
+				font-size: 1.05rem;
+				font-weight: 800;
+				margin-bottom: 10px;
+				color: var(--accent4);
+			}
+			.trivia-content p {
+				font-size: 0.93rem;
+				color: var(--text-muted);
+				line-height: 1.65;
+			}
+			.trivia-content strong {
+				color: var(--text);
+			}
+
+			/* ===== QUOTES SLIDER ===== */
+			.quotes-slider {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 36px 40px;
+				position: relative;
+				overflow: hidden;
+			}
+			.quotes-slider::before {
+				content: '"';
+				position: absolute;
+				font-size: 180px;
+				font-weight: 900;
+				color: rgba(108, 99, 255, 0.06);
+				top: -20px;
+				left: 20px;
+				line-height: 1;
+				font-family: Georgia, serif;
+				pointer-events: none;
+			}
+
+			.quote-track {
+				position: relative;
+				min-height: 90px;
+			}
+
+			.quote-item {
+				position: absolute;
+				inset: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				opacity: 0;
+				transform: translateY(14px);
+				transition:
+					opacity 0.55s ease,
+					transform 0.55s ease;
+				pointer-events: none;
+			}
+			.quote-item.active {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+
+			.quote-text {
+				font-size: clamp(1rem, 2.5vw, 1.2rem);
+				font-weight: 700;
+				color: var(--text);
+				line-height: 1.5;
+				margin-bottom: 12px;
+				position: relative;
+				z-index: 1;
+			}
+			.quote-author {
+				font-family: "Space Mono", monospace;
+				font-size: 0.75rem;
+				color: var(--accent1);
+				letter-spacing: 0.08em;
+			}
+
+			.quote-dots {
+				display: flex;
+				gap: 8px;
+				margin-top: 28px;
+			}
+			.q-dot {
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: var(--border);
+				cursor: pointer;
+				transition: all 0.25s;
+			}
+			.q-dot.active {
+				background: var(--accent1);
+				transform: scale(1.4);
+			}
+
+			/* ===== FOOTER ===== */
+			footer {
+				position: relative;
+				z-index: 10;
+				border-top: 1px solid var(--border);
+				padding: 28px 24px;
+				text-align: center;
+			}
+			.footer-inner {
+				max-width: 1100px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 16px;
+				flex-wrap: wrap;
+			}
+			.footer-brand {
+				font-weight: 900;
+				font-size: 1rem;
+				background: linear-gradient(
+					135deg,
+					var(--accent1),
+					var(--accent2)
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.footer-text {
+				font-size: 0.82rem;
+				color: var(--text-muted);
+			}
+
+			/* ===== RESPONSIVE ===== */
+			@media (max-width: 640px) {
+				.tiles-grid {
+					grid-template-columns: 1fr;
+				}
+				.trivia-card {
+					flex-direction: column;
+					gap: 16px;
+				}
+				.quotes-slider {
+					padding: 28px 24px;
+				}
+				.motivation-banner {
+					padding: 36px 24px;
+				}
+				.footer-inner {
+					flex-direction: column;
+					text-align: center;
+				}
+			}
+
+			/* ===== ENTRY ANIMATIONS ===== */
+			@keyframes fadeUp {
+				from {
+					opacity: 0;
+					transform: translateY(24px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.anim {
+				opacity: 0;
+				animation: fadeUp 0.6s ease forwards;
+			}
+			.anim-d1 {
+				animation-delay: 0.05s;
+			}
+			.anim-d2 {
+				animation-delay: 0.15s;
+			}
+			.anim-d3 {
+				animation-delay: 0.25s;
+			}
+			.anim-d4 {
+				animation-delay: 0.35s;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<div class="orb orb-1"></div>
+			<div class="orb orb-2"></div>
+			<div class="header-inner">
+				<a href="index.html" class="back-btn anim anim-d1">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M19 12H5M12 5l-7 7 7 7" />
+					</svg>
+					Strona główna
+				</a>
+				<div class="badge anim anim-d2">
+					Klasa 6 · Szkoła podstawowa
+				</div>
+				<h1 class="header-title anim anim-d3">
+					Matematyka<br />Klasa 6
+				</h1>
+				<p class="header-subtitle anim anim-d4">
+					Witaj! Wybierz dział, który chcesz opanować. Tu znajdziesz
+					wszystko, czego potrzebujesz, żeby matematyka stała się
+					Twoją mocną stroną.
+				</p>
+			</div>
+		</header>
+
+		<!-- STATS BAR -->
+		<div class="stats-bar anim anim-d4">
+			<div class="stats-inner">
+				<div class="stat-chip">
+					<span class="dot" style="background: var(--accent1)"></span
+					>7 działów
+				</div>
+				<div class="stat-chip">
+					<span class="dot" style="background: var(--accent2)"></span
+					>Klasa 6 SP
+				</div>
+				<div class="stat-chip">
+					<span class="dot" style="background: var(--accent4)"></span
+					>Interaktywna nauka
+				</div>
+			</div>
+		</div>
+
+		<!-- TILES SECTION -->
+		<section>
+			<div class="section-inner">
+				<div class="section-label">Działy tematyczne</div>
+				<div class="section-title">Co chcesz dzisiaj poznać?</div>
+				<div class="tiles-grid">
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #6c63ff; --tile-c2: #9b93ff"
+					>
+						<div class="tile-icon">ℤ</div>
+						<div class="tile-content">
+							<div class="tile-title">Liczby całkowite</div>
+							<div class="tile-desc">
+								Liczby dodatnie, ujemne i zero. Oś liczbowa,
+								wartość bezwzględna i porównywanie.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #00d4aa; --tile-c2: #00b89c"
+					>
+						<div class="tile-icon">±</div>
+						<div class="tile-content">
+							<div class="tile-title">Działania na liczbach</div>
+							<div class="tile-desc">
+								Dodawanie, odejmowanie, mnożenie i dzielenie –
+								na ułamkach, dziesiętnych i całkowitych.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #ff6b6b; --tile-c2: #ff9e9e"
+					>
+						<div class="tile-icon">△</div>
+						<div class="tile-content">
+							<div class="tile-title">Figury na płaszczyźnie</div>
+							<div class="tile-desc">
+								Trójkąty, czworokąty, okrąg – pola powierzchni,
+								obwody i symetria.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #ffd166; --tile-c2: #ffb830"
+					>
+						<div class="tile-icon">x</div>
+						<div class="tile-content">
+							<div class="tile-title">Równania</div>
+							<div class="tile-desc">
+								Pierwsze kroki z równaniami – jak znaleźć
+								nieznaną? Metody rozwiązywania krok po kroku.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #4ecdc4; --tile-c2: #38b2a8"
+					>
+						<div class="tile-icon">▦</div>
+						<div class="tile-content">
+							<div class="tile-title">Bryły</div>
+							<div class="tile-desc">
+								Sześcian, prostopadłościan, walec – objętości,
+								pola powierzchni i siatki brył.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #a78bfa; --tile-c2: #c4b5fd"
+					>
+						<div class="tile-icon">%</div>
+						<div class="tile-content">
+							<div class="tile-title">Matematyka i my</div>
+							<div class="tile-desc">
+								Procenty, proporcje, skala i statystyka –
+								matematyka w życiu codziennym.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+
+					<a
+						href="#"
+						class="tile"
+						style="--tile-c1: #f97316; --tile-c2: #fb923c"
+					>
+						<div class="tile-icon">🧮</div>
+						<div class="tile-content">
+							<div class="tile-title">Matematyka na co dzień</div>
+							<div class="tile-desc">
+								Zadania tekstowe, obliczenia praktyczne – jak
+								matematyka działa w prawdziwym świecie.
+							</div>
+						</div>
+						<div class="tile-arrow">
+							Przejdź do działu
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- MOTIVATION BANNER -->
+		<section>
+			<div class="section-inner">
+				<div class="motivation-banner">
+					<div class="tag">🚀 Motywacja</div>
+					<h2>
+						Wybierz dział i pokaż,<br />że matematyka to Twoja siła!
+					</h2>
+					<p>
+						Każde zadanie to krok do przodu. Zacznij od czegokolwiek
+						– ważne, żeby zacząć.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- TRIVIA SECTION -->
+		<section>
+			<div class="section-inner">
+				<div class="section-label">Wiedza extra</div>
+				<div class="section-title">Ciekawostka matematyczna</div>
+				<div class="trivia-card">
+					<div class="trivia-icon">💡</div>
+					<div class="trivia-content">
+						<h3>Czy wiedziałeś, że…</h3>
+						<p>
+							Liczba <strong>zero</strong> nie jest ani dodatnia,
+							ani ujemna – jest jedyna w swoim rodzaju! Została
+							wynaleziona przez matematyków indyjskich około
+							<strong>628 roku n.e.</strong>, a przez wieki Europa
+							w ogóle jej nie używała. Bez zera nie istniałby
+							układ pozycyjny, komputery ani nowoczesna
+							matematyka. Jedno małe kółko zmieniło historię
+							świata.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- QUOTES SLIDER -->
+		<section>
+			<div class="section-inner">
+				<div class="section-label">Inspiracje</div>
+				<div class="section-title">
+					Słowa, które pobudzają do myślenia
+				</div>
+				<div class="quotes-slider">
+					<div class="quote-track" id="quoteTrack">
+						<!-- filled by JS -->
+					</div>
+					<div class="quote-dots" id="quoteDots"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer>
+			<div class="footer-inner">
+				<div class="footer-brand">MatiLand</div>
+				<div class="footer-text">
+					Matematyczna przygoda · Klasa 6 · Szkoła podstawowa
+				</div>
+				<div class="footer-text">© 2025 MatiLand</div>
+			</div>
+		</footer>
+
+		<script>
+			// ===== QUOTES =====
+			const quotes = [
+				{
+					text: "Matematyka to język, w którym napisany jest wszechświat.",
+					author: "Galileo Galilei",
+				},
+				{
+					text: "Logika jest drogą od A do B. Wyobraźnia dotrze wszędzie.",
+					author: "Albert Einstein",
+				},
+				{
+					text: "Każdy problem matematyczny ma rozwiązanie – trzeba tylko wiedzieć, gdzie szukać.",
+					author: "Alan Turing",
+				},
+				{
+					text: "Nie bój się powolnego postępu. Bój się stania w miejscu.",
+					author: "Chińska mądrość",
+				},
+				{
+					text: "Matematyka to nie tylko cyfry – to sposób myślenia o świecie.",
+					author: "Henri Poincaré",
+				},
+			];
+
+			const track = document.getElementById("quoteTrack");
+			const dotsEl = document.getElementById("quoteDots");
+			let currentQ = 0;
+			let timer;
+
+			quotes.forEach((q, i) => {
+				const item = document.createElement("div");
+				item.className = "quote-item" + (i === 0 ? " active" : "");
+				item.innerHTML = `<div class="quote-text">${q.text}</div><div class="quote-author">— ${q.author}</div>`;
+				track.appendChild(item);
+
+				const dot = document.createElement("div");
+				dot.className = "q-dot" + (i === 0 ? " active" : "");
+				dot.addEventListener("click", () => goToQuote(i));
+				dotsEl.appendChild(dot);
+			});
+
+			function goToQuote(n) {
+				const items = track.querySelectorAll(".quote-item");
+				const dots = dotsEl.querySelectorAll(".q-dot");
+				items[currentQ].classList.remove("active");
+				dots[currentQ].classList.remove("active");
+				currentQ = n;
+				items[currentQ].classList.add("active");
+				dots[currentQ].classList.add("active");
+				// fix track min-height
+				const h = items[currentQ].scrollHeight;
+				track.style.minHeight = h + "px";
+				resetTimer();
+			}
+
+			function nextQuote() {
+				goToQuote((currentQ + 1) % quotes.length);
+			}
+
+			function resetTimer() {
+				clearInterval(timer);
+				timer = setInterval(nextQuote, 4500);
+			}
+
+			// set initial height
+			window.addEventListener("load", () => {
+				const items = track.querySelectorAll(".quote-item");
+				let max = 0;
+				items.forEach((el) => {
+					el.style.position = "relative";
+					max = Math.max(max, el.scrollHeight);
+					el.style.position = "";
+				});
+				track.style.minHeight = max + "px";
+			});
+
+			resetTimer();
+
+			// ===== TILE ENTRANCE ON SCROLL =====
+			const tiles = document.querySelectorAll(".tile");
+			const obs = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry, i) => {
+						if (entry.isIntersecting) {
+							entry.target.style.animationDelay = i * 0.06 + "s";
+							entry.target.classList.add("anim");
+							obs.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.1 },
+			);
+			tiles.forEach((t) => obs.observe(t));
+		</script>
+	</body>
+</html>

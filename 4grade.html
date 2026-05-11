@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matematyka – Klasa 4 | MatiLand</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			:root {
+				--bg: #f0f4ff;
+				--card-bg: #ffffff;
+				--text: #1a1e3c;
+				--muted: #6b7280;
+				--accent: #5b6ef8;
+				--accent2: #ff6b6b;
+				--radius: 20px;
+				--shadow: 0 8px 30px rgba(91, 110, 248, 0.1);
+				--shadow-hover: 0 16px 48px rgba(91, 110, 248, 0.2);
+			}
+
+			body {
+				font-family: "Nunito", sans-serif;
+				background: var(--bg);
+				color: var(--text);
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			/* ── HEADER ── */
+			.site-header {
+				position: relative;
+				background: linear-gradient(
+					135deg,
+					#5b6ef8 0%,
+					#a78bf5 50%,
+					#f87c6d 100%
+				);
+				padding: 48px 24px 72px;
+				text-align: center;
+				overflow: hidden;
+			}
+			.site-header::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+			}
+			.back-btn {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: rgba(255, 255, 255, 0.2);
+				color: #fff;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: 0.9rem;
+				padding: 10px 18px;
+				border-radius: 50px;
+				border: 2px solid rgba(255, 255, 255, 0.35);
+				backdrop-filter: blur(8px);
+				transition:
+					background 0.2s,
+					transform 0.2s;
+			}
+			.back-btn:hover {
+				background: rgba(255, 255, 255, 0.32);
+				transform: translateX(-3px);
+			}
+			.back-btn svg {
+				width: 16px;
+				height: 16px;
+			}
+
+			.header-badge {
+				display: inline-block;
+				background: rgba(255, 255, 255, 0.22);
+				color: #fff;
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				padding: 5px 16px;
+				border-radius: 50px;
+				border: 1px solid rgba(255, 255, 255, 0.4);
+				margin-bottom: 16px;
+			}
+			.header-title {
+				font-family: "Baloo 2", cursive;
+				font-size: clamp(2.2rem, 6vw, 3.8rem);
+				font-weight: 800;
+				color: #fff;
+				line-height: 1.1;
+				text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+				margin-bottom: 14px;
+			}
+			.header-sub {
+				color: rgba(255, 255, 255, 0.88);
+				font-size: clamp(1rem, 2.5vw, 1.18rem);
+				font-weight: 600;
+				max-width: 520px;
+				margin: 0 auto;
+				line-height: 1.6;
+			}
+			.header-shapes {
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+			}
+			.shape {
+				position: absolute;
+				opacity: 0.18;
+				animation: floatShape 6s ease-in-out infinite alternate;
+			}
+			.shape-1 {
+				top: 10%;
+				left: 4%;
+				font-size: 2.4rem;
+				animation-delay: 0s;
+			}
+			.shape-2 {
+				top: 18%;
+				right: 6%;
+				font-size: 2rem;
+				animation-delay: 1s;
+			}
+			.shape-3 {
+				bottom: 20%;
+				left: 8%;
+				font-size: 1.8rem;
+				animation-delay: 2s;
+			}
+			.shape-4 {
+				bottom: 14%;
+				right: 10%;
+				font-size: 2.2rem;
+				animation-delay: 0.5s;
+			}
+			.shape-5 {
+				top: 50%;
+				left: 2%;
+				font-size: 1.5rem;
+				animation-delay: 1.5s;
+			}
+			@keyframes floatShape {
+				from {
+					transform: translateY(0) rotate(0deg);
+				}
+				to {
+					transform: translateY(-14px) rotate(10deg);
+				}
+			}
+
+			/* wave divider */
+			.wave {
+				display: block;
+				width: 100%;
+				margin-top: -2px;
+				line-height: 0;
+			}
+			.wave svg {
+				display: block;
+				width: 100%;
+				height: 60px;
+			}
+
+			/* ── MAIN ── */
+			.main {
+				max-width: 1100px;
+				margin: 0 auto;
+				padding: 0 20px 60px;
+			}
+
+			/* ── MOTIVATION ── */
+			.motivation {
+				text-align: center;
+				padding: 36px 24px 16px;
+			}
+			.motivation-text {
+				font-family: "Baloo 2", cursive;
+				font-size: clamp(1.15rem, 3vw, 1.6rem);
+				font-weight: 700;
+				color: var(--accent);
+				background: linear-gradient(90deg, #5b6ef8, #a78bf5, #f87c6d);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.motivation-sub {
+				color: var(--muted);
+				font-size: 1rem;
+				margin-top: 8px;
+			}
+
+			/* ── GRID ── */
+			.section-label {
+				font-size: 0.78rem;
+				font-weight: 800;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 6px;
+			}
+			.section-title {
+				font-family: "Baloo 2", cursive;
+				font-size: clamp(1.5rem, 4vw, 2.1rem);
+				font-weight: 800;
+				color: var(--text);
+				margin-bottom: 28px;
+			}
+			.grid-header {
+				margin-bottom: 8px;
+			}
+
+			.tiles-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 22px;
+				margin-bottom: 52px;
+			}
+
+			.tile {
+				background: var(--card-bg);
+				border-radius: var(--radius);
+				padding: 32px 28px;
+				box-shadow: var(--shadow);
+				cursor: pointer;
+				text-decoration: none;
+				color: var(--text);
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+				position: relative;
+				overflow: hidden;
+				transition:
+					transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+					box-shadow 0.28s ease;
+				border: 2px solid transparent;
+			}
+			.tile::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: var(--tile-gradient);
+				opacity: 0;
+				transition: opacity 0.28s;
+				border-radius: calc(var(--radius) - 2px);
+			}
+			.tile:hover {
+				transform: translateY(-8px) scale(1.025);
+				box-shadow: var(--shadow-hover);
+				border-color: var(--tile-color);
+			}
+			.tile:hover::before {
+				opacity: 0.06;
+			}
+			.tile:active {
+				transform: translateY(-4px) scale(1.01);
+			}
+
+			.tile-icon-wrap {
+				width: 64px;
+				height: 64px;
+				border-radius: 18px;
+				background: var(--tile-bg-icon);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2rem;
+				flex-shrink: 0;
+				transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+			}
+			.tile:hover .tile-icon-wrap {
+				transform: scale(1.18) rotate(-4deg);
+			}
+
+			.tile-top-accent {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 90px;
+				height: 90px;
+				background: var(--tile-gradient);
+				opacity: 0.1;
+				border-radius: 0 var(--radius) 0 90px;
+				transition: opacity 0.28s;
+			}
+			.tile:hover .tile-top-accent {
+				opacity: 0.18;
+			}
+
+			.tile-tag {
+				display: inline-block;
+				font-size: 0.68rem;
+				font-weight: 800;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--tile-color);
+				background: var(--tile-bg-icon);
+				padding: 3px 10px;
+				border-radius: 50px;
+				width: fit-content;
+			}
+			.tile-title {
+				font-family: "Baloo 2", cursive;
+				font-size: 1.3rem;
+				font-weight: 800;
+				color: var(--text);
+				line-height: 1.2;
+			}
+			.tile-desc {
+				font-size: 0.9rem;
+				color: var(--muted);
+				line-height: 1.6;
+				flex: 1;
+			}
+			.tile-arrow {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: var(--tile-color);
+				margin-top: 4px;
+				transition: gap 0.2s;
+			}
+			.tile:hover .tile-arrow {
+				gap: 10px;
+			}
+			.tile-arrow svg {
+				width: 16px;
+				height: 16px;
+			}
+
+			/* tile themes */
+			.tile-blue {
+				--tile-color: #5b6ef8;
+				--tile-bg-icon: #eef0fe;
+				--tile-gradient: linear-gradient(135deg, #5b6ef8, #818cf8);
+			}
+			.tile-orange {
+				--tile-color: #f59e0b;
+				--tile-bg-icon: #fef3c7;
+				--tile-gradient: linear-gradient(135deg, #f59e0b, #fbbf24);
+			}
+			.tile-green {
+				--tile-color: #10b981;
+				--tile-bg-icon: #d1fae5;
+				--tile-gradient: linear-gradient(135deg, #10b981, #34d399);
+			}
+			.tile-pink {
+				--tile-color: #ec4899;
+				--tile-bg-icon: #fce7f3;
+				--tile-gradient: linear-gradient(135deg, #ec4899, #f472b6);
+			}
+			.tile-purple {
+				--tile-color: #8b5cf6;
+				--tile-bg-icon: #ede9fe;
+				--tile-gradient: linear-gradient(135deg, #8b5cf6, #a78bf5);
+			}
+
+			/* ── QUOTES CAROUSEL ── */
+			.quotes-section {
+				margin-bottom: 48px;
+			}
+			.quotes-track-wrap {
+				background: linear-gradient(135deg, #5b6ef8 0%, #a78bf5 100%);
+				border-radius: var(--radius);
+				padding: 32px 36px;
+				position: relative;
+				overflow: hidden;
+				box-shadow: 0 8px 32px rgba(91, 110, 248, 0.22);
+			}
+			.quotes-track-wrap::after {
+				content: "❝";
+				position: absolute;
+				top: -10px;
+				right: 24px;
+				font-size: 8rem;
+				color: rgba(255, 255, 255, 0.08);
+				font-family: Georgia, serif;
+				line-height: 1;
+			}
+			.quote-slide {
+				display: none;
+				animation: fadeQ 0.5s ease;
+			}
+			.quote-slide.active {
+				display: block;
+			}
+			@keyframes fadeQ {
+				from {
+					opacity: 0;
+					transform: translateY(8px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			.quote-text {
+				font-family: "Baloo 2", cursive;
+				font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+				font-weight: 700;
+				color: #fff;
+				line-height: 1.55;
+				margin-bottom: 12px;
+			}
+			.quote-author {
+				font-size: 0.85rem;
+				font-weight: 700;
+				color: rgba(255, 255, 255, 0.72);
+				letter-spacing: 1px;
+			}
+			.quote-dots {
+				display: flex;
+				gap: 8px;
+				margin-top: 20px;
+			}
+			.qdot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.35);
+				cursor: pointer;
+				transition:
+					background 0.2s,
+					transform 0.2s;
+			}
+			.qdot.active {
+				background: #fff;
+				transform: scale(1.3);
+			}
+
+			/* ── FACT ── */
+			.fact-section {
+				margin-bottom: 48px;
+			}
+			.fact-card {
+				background: var(--card-bg);
+				border-radius: var(--radius);
+				padding: 32px 36px;
+				box-shadow: var(--shadow);
+				display: flex;
+				gap: 24px;
+				align-items: flex-start;
+				border-left: 6px solid #f59e0b;
+				position: relative;
+				overflow: hidden;
+			}
+			.fact-card::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 120px;
+				height: 120px;
+				background: #fef3c7;
+				border-radius: 0 var(--radius) 0 120px;
+				opacity: 0.5;
+			}
+			.fact-emoji {
+				font-size: 2.8rem;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+			.fact-label {
+				font-size: 0.72rem;
+				font-weight: 800;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				color: #f59e0b;
+				margin-bottom: 6px;
+			}
+			.fact-title {
+				font-family: "Baloo 2", cursive;
+				font-size: 1.2rem;
+				font-weight: 800;
+				margin-bottom: 8px;
+			}
+			.fact-text {
+				font-size: 0.95rem;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+
+			/* ── FOOTER ── */
+			footer {
+				background: #1a1e3c;
+				color: rgba(255, 255, 255, 0.6);
+				text-align: center;
+				padding: 28px 24px;
+				font-size: 0.88rem;
+			}
+			.footer-logo {
+				font-family: "Baloo 2", cursive;
+				font-size: 1.3rem;
+				font-weight: 800;
+				color: #fff;
+				margin-bottom: 6px;
+			}
+			.footer-logo span {
+				color: #a78bf5;
+			}
+
+			/* ── RESPONSIVE ── */
+			@media (max-width: 600px) {
+				.site-header {
+					padding: 56px 16px 60px;
+				}
+				.fact-card {
+					flex-direction: column;
+					gap: 14px;
+				}
+				.tiles-grid {
+					grid-template-columns: 1fr;
+				}
+				.quotes-track-wrap {
+					padding: 24px 22px;
+				}
+			}
+
+			/* scroll reveal */
+			.reveal {
+				opacity: 0;
+				transform: translateY(24px);
+				transition:
+					opacity 0.55s ease,
+					transform 0.55s ease;
+			}
+			.reveal.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ════ HEADER ════ -->
+		<header class="site-header">
+			<div class="header-shapes">
+				<span class="shape shape-1">➕</span>
+				<span class="shape shape-2">✖️</span>
+				<span class="shape shape-3">➗</span>
+				<span class="shape shape-4">🔢</span>
+				<span class="shape shape-5">📐</span>
+			</div>
+			<a href="index.html" class="back-btn">
+				<svg
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+				>
+					<path d="M19 12H5M12 5l-7 7 7 7" />
+				</svg>
+				Strona główna
+			</a>
+			<div class="header-badge">MatiLand • Klasa 4</div>
+			<h1 class="header-title">Matematyka – Klasa&nbsp;4 🚀</h1>
+			<p class="header-sub">
+				Witaj, czwartoklasiasto! Tu znajdziesz wszystko, czego
+				potrzebujesz, żeby podbić matematykę.
+			</p>
+		</header>
+		<div class="wave">
+			<svg
+				viewBox="0 0 1440 60"
+				preserveAspectRatio="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z"
+					fill="#f0f4ff"
+				/>
+			</svg>
+		</div>
+
+		<!-- ════ MAIN ════ -->
+		<div class="main">
+			<!-- motivation -->
+			<div class="motivation reveal">
+				<p class="motivation-text">
+					🎯 Wybierz dział i ruszaj po matematyczne zwycięstwo!
+				</p>
+				<p class="motivation-sub">
+					Każdy dział to nowa przygoda. Zacznij od tego, który Cię
+					ciekawi!
+				</p>
+			</div>
+
+			<!-- grid -->
+			<section style="margin-bottom: 12px">
+				<div class="grid-header reveal">
+					<p class="section-label">📚 Działy</p>
+					<h2 class="section-title">Co chcesz dziś odkryć?</h2>
+				</div>
+				<div class="tiles-grid">
+					<!-- 1 -->
+					<a
+						href="#liczby"
+						class="tile tile-blue reveal"
+						style="transition-delay: 0.05s"
+					>
+						<div class="tile-top-accent"></div>
+						<div class="tile-icon-wrap">🔢</div>
+						<span class="tile-tag">Dział 1</span>
+						<div class="tile-title">Liczby naturalne</div>
+						<p class="tile-desc">
+							Liczby do miliona i jeszcze dalej! Nauczysz się je
+							zapisywać, porównywać i sprawnie nimi operować.
+						</p>
+						<span class="tile-arrow"
+							>Przejdź dalej
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" /></svg
+						></span>
+					</a>
+
+					<!-- 2 -->
+					<a
+						href="#dzialania"
+						class="tile tile-orange reveal"
+						style="transition-delay: 0.1s"
+					>
+						<div class="tile-top-accent"></div>
+						<div class="tile-icon-wrap">✏️</div>
+						<span class="tile-tag">Dział 2</span>
+						<div class="tile-title">Działania pisemne</div>
+						<p class="tile-desc">
+							Dodawanie, odejmowanie, mnożenie i dzielenie –
+							opanujesz je na kartce i bez kalkulatora!
+						</p>
+						<span class="tile-arrow"
+							>Przejdź dalej
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" /></svg
+						></span>
+					</a>
+
+					<!-- 3 -->
+					<a
+						href="#figury"
+						class="tile tile-green reveal"
+						style="transition-delay: 0.15s"
+					>
+						<div class="tile-top-accent"></div>
+						<div class="tile-icon-wrap">📐</div>
+						<span class="tile-tag">Dział 3</span>
+						<div class="tile-title">Figury geometryczne</div>
+						<p class="tile-desc">
+							Trójkąty, prostokąty, kwadraty, koła – poznaj ich
+							tajemnice i naucz się mierzyć obwody.
+						</p>
+						<span class="tile-arrow"
+							>Przejdź dalej
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" /></svg
+						></span>
+					</a>
+
+					<!-- 4 -->
+					<a
+						href="#ulamki"
+						class="tile tile-pink reveal"
+						style="transition-delay: 0.2s"
+					>
+						<div class="tile-top-accent"></div>
+						<div class="tile-icon-wrap">🍕</div>
+						<span class="tile-tag">Dział 4</span>
+						<div class="tile-title">Ułamki zwykłe</div>
+						<p class="tile-desc">
+							Połowa pizzy, ćwierć godziny – dowiedz się, czym
+							jest licznik i mianownik oraz jak dodawać ułamki.
+						</p>
+						<span class="tile-arrow"
+							>Przejdź dalej
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" /></svg
+						></span>
+					</a>
+
+					<!-- 5 -->
+					<a
+						href="#dziesietne"
+						class="tile tile-purple reveal"
+						style="transition-delay: 0.25s"
+					>
+						<div class="tile-top-accent"></div>
+						<div class="tile-icon-wrap">💯</div>
+						<span class="tile-tag">Dział 5</span>
+						<div class="tile-title">Ułamki dziesiętne</div>
+						<p class="tile-desc">
+							0,5 … 3,14 … 99,99 – ułamki dziesiętne są wszędzie!
+							Naucz się je czytać, pisać i obliczać.
+						</p>
+						<span class="tile-arrow"
+							>Przejdź dalej
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+							>
+								<path d="M5 12h14M12 5l7 7-7 7" /></svg
+						></span>
+					</a>
+				</div>
+			</section>
+
+			<!-- quotes carousel -->
+			<section class="quotes-section reveal">
+				<div class="grid-header" style="margin-bottom: 16px">
+					<p class="section-label">💬 Inspiracja</p>
+					<h2 class="section-title">Słowa, które motywują</h2>
+				</div>
+				<div class="quotes-track-wrap">
+					<div class="quote-slide active">
+						<p class="quote-text">
+							„Matematyka to gimnastyka dla mózgu – im więcej
+							ćwiczysz, tym staje się silniejszy!"
+						</p>
+						<span class="quote-author">— Mądry Matematyk 🧠</span>
+					</div>
+					<div class="quote-slide">
+						<p class="quote-text">
+							„Każdy błąd to krok bliżej do rozwiązania. Nie
+							poddawaj się, próbuj dalej!"
+						</p>
+						<span class="quote-author">— Albert Einstein 🌟</span>
+					</div>
+					<div class="quote-slide">
+						<p class="quote-text">
+							„Matematyka jest wszędzie – w muzyce, w grach, w
+							przyrodzie. Odkryj jej magię!"
+						</p>
+						<span class="quote-author">— MatiLand 🚀</span>
+					</div>
+					<div class="quote-slide">
+						<p class="quote-text">
+							„Nie pytaj, czy potrafisz. Pytaj, jak długo musisz
+							ćwiczyć – a potem ćwicz!"
+						</p>
+						<span class="quote-author">— Twój Nauczyciel 👩‍🏫</span>
+					</div>
+					<div class="quote-dots" id="qdots"></div>
+				</div>
+			</section>
+
+			<!-- fact -->
+			<section class="fact-section reveal">
+				<div class="grid-header" style="margin-bottom: 16px">
+					<p class="section-label">💡 Ciekawostka</p>
+					<h2 class="section-title">Czy wiesz, że…</h2>
+				</div>
+				<div class="fact-card">
+					<span class="fact-emoji">🐝</span>
+					<div>
+						<p class="fact-label">Matematyka w naturze</p>
+						<h3 class="fact-title">
+							Pszczoły są mistrzami geometrii!
+						</h3>
+						<p class="fact-text">
+							Pszczoły budują plastry miodu w kształcie
+							sześciokątów – czyli figur o sześciu bokach. To nie
+							przypadek! Sześciokąt mieści najwięcej miodu przy
+							jak najmniejszym zużyciu wosku. Pszczoły odkryły to
+							miliony lat przed matematykami. 🍯
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- /main -->
+
+		<!-- ════ FOOTER ════ -->
+		<footer>
+			<div class="footer-logo">Mati<span>Land</span> 🌟</div>
+			<p>
+				MatiLand – matematyczna przygoda &nbsp;•&nbsp; Wszelkie prawa
+				zastrzeżone
+			</p>
+		</footer>
+
+		<script>
+			// ── quotes carousel ──
+			const slides = document.querySelectorAll(".quote-slide");
+			const dotsContainer = document.getElementById("qdots");
+			let current = 0,
+				timer;
+
+			slides.forEach((_, i) => {
+				const dot = document.createElement("div");
+				dot.className = "qdot" + (i === 0 ? " active" : "");
+				dot.addEventListener("click", () => goTo(i));
+				dotsContainer.appendChild(dot);
+			});
+
+			function goTo(n) {
+				slides[current].classList.remove("active");
+				dotsContainer.children[current].classList.remove("active");
+				current = (n + slides.length) % slides.length;
+				slides[current].classList.add("active");
+				dotsContainer.children[current].classList.add("active");
+				resetTimer();
+			}
+
+			function resetTimer() {
+				clearInterval(timer);
+				timer = setInterval(() => goTo(current + 1), 4200);
+			}
+			resetTimer();
+
+			// ── scroll reveal ──
+			const revealEls = document.querySelectorAll(".reveal");
+			const io = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((e) => {
+						if (e.isIntersecting) {
+							e.target.classList.add("visible");
+							io.unobserve(e.target);
+						}
+					});
+				},
+				{ threshold: 0.12 },
+			);
+			revealEls.forEach((el) => io.observe(el));
+		</script>
+	</body>
+</html>

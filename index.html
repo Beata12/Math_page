@@ -3,389 +3,279 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>EduNowoczesność - Twoje Centrum Nauki</title>
-		<link rel="stylesheet" href="css/style.css" />
+		<title>MatiLand – Matematyka dla każdego!</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;900&display=swap"
 			rel="stylesheet"
 		/>
-		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="css/style_index.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/main.js" defer></script>
 	</head>
-	<body class="bg-slate-50 text-slate-800">
-		<!-- Nawigacja -->
-		<nav
-			class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200"
-		>
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between h-16 items-center">
-					<div class="flex items-center gap-2">
-						<div class="p-2 bg-indigo-600 rounded-lg text-white">
-							<i class="fas fa-graduation-cap text-xl"></i>
-						</div>
-						<span
-							class="font-bold text-xl tracking-tight text-indigo-900"
-							>EduNowoczesność</span
-						>
-					</div>
-					<div class="hidden md:flex space-x-8">
-						<a
-							href="#home"
-							class="text-slate-600 hover:text-indigo-600 font-medium"
-							>Start</a
-						>
-						<a
-							href="#features"
-							class="text-slate-600 hover:text-indigo-600 font-medium"
-							>Zasoby</a
-						>
-						<a
-							href="#about"
-							class="text-slate-600 hover:text-indigo-600 font-medium"
-							>O projekcie</a
-						>
-						<a
-							href="#"
-							class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition"
-							>Panel Ucznia</a
-						>
-					</div>
-					<div class="md:hidden">
-						<button class="text-slate-600 focus:outline-none">
-							<i class="fas fa-bars text-2xl"></i>
-						</button>
-					</div>
-				</div>
-			</div>
+	<body>
+		<nav>
+			<a href="#" class="nav-logo">🔢 Mati<span>Land</span></a>
+			<ul class="nav-links">
+				<li><a href="#klasy">Klasy</a></li>
+				<li><a href="#ciekawostka">Ciekawostki</a></li>
+				<li><a href="#cytaty">Cytaty</a></li>
+			</ul>
 		</nav>
-
-		<!-- Hero Section -->
-		<header
-			id="home"
-			class="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40"
-		>
-			<div
-				class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center"
-			>
-				<div class="lg:w-1/2 text-center lg:text-left">
-					<h1
-						class="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight"
-					>
-						Nauka staje się
-						<span class="text-indigo-600">Przygodą</span>
-					</h1>
-					<p
-						class="mt-6 text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0"
-					>
-						Witaj w nowoczesnej przestrzeni edukacyjnej. Wykorzystaj
-						moc interaktywnych narzędzi, aby nauka była nie tylko
-						efektywna, ale i inspirująca.
-					</p>
-					<div
-						class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-					>
-						<a
-							href="#features"
-							class="px-8 py-4 bg-indigo-600 text-white rounded-xl font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-xl transition-all"
-						>
-							Zacznij naukę
-						</a>
-						<a
-							href="#"
-							class="px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
-						>
-							<i class="fas fa-play text-indigo-600 text-sm"></i>
-							Zobacz demo
-						</a>
-					</div>
-				</div>
-				<div class="lg:w-1/2 mt-16 lg:mt-0 relative">
-					<div class="relative z-10 w-full max-w-lg mx-auto">
-						<img
-							src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-							alt="Uczniowie uczący się"
-							class="rounded-3xl shadow-2xl"
-							onerror="
-								this.src =
-									'https://via.placeholder.com/600x400?text=Uczniowie+w+klasie'
-							"
-						/>
-					</div>
-					<!-- Pływające elementy -->
-					<div
-						class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 animate-bounce"
-					>
-						<div
-							class="p-2 bg-yellow-100 rounded-full text-yellow-600"
-						>
-							<i class="fas fa-trophy"></i>
-						</div>
-						<span class="font-bold">+120 Punktów!</span>
-					</div>
-				</div>
-			</div>
-		</header>
-
-		<!-- Sekcja Narzędzi (Features) -->
-		<section id="features" class="py-24 bg-slate-100">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl font-bold text-slate-900">
-						Biblioteka Narzędzi
-					</h2>
-					<p class="mt-4 text-slate-600">
-						Wszystko, czego potrzebujesz do nowoczesnej lekcji w
-						jednym miejscu.
-					</p>
-				</div>
-
-				<div
-					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-				>
-					<div
-						class="card-hover bg-white p-8 rounded-3xl border border-slate-200"
-					>
-						<div
-							class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6"
-						>
-							<i class="fas fa-lightbulb text-2xl"></i>
-						</div>
-						<a href="quiz.html">
-							<h3 class="text-xl font-bold mb-3">
-								Interaktywne Quizy
-							</h3>
-							<p class="text-slate-600 mb-6 text-sm">
-								Sprawdź swoją wiedzę w formie zabawy. Rywalizuj
-								z klasą o miano mistrza.
-							</p>
-							<button
-								href="quiz.html"
-								class="text-blue-600 font-semibold hover:gap-2 transition-all flex items-center gap-1 group"
-							>
-								Otwórz
-								<i
-									class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
-								></i></button
-						></a>
-					</div>
-					<div
-						class="card-hover bg-white p-8 rounded-3xl border border-slate-200"
-					>
-						<div
-							class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 mb-6"
-						>
-							<i class="fas fa-gamepad text-2xl"></i>
-						</div>
-						<a href="gry.html">
-							<h3 class="text-xl font-bold mb-3">
-								Gry Edukacyjne
-							</h3>
-							<p class="text-slate-600 mb-6 text-sm">
-								Ucz się przez działanie. Nasze gry pomogą Ci
-								zrozumieć trudne koncepty.
-							</p>
-							<button
-								class="text-purple-600 font-semibold hover:gap-2 transition-all flex items-center gap-1 group"
-							>
-								Graj
-								<i
-									class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
-								></i></button
-						></a>
-					</div>
-					<div
-						class="card-hover bg-white p-8 rounded-3xl border border-slate-200"
-					>
-						<div
-							class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-6"
-						>
-							<i class="fas fa-tv text-2xl"></i>
-						</div>
-						<a href="fiszki.html">
-							<h3 class="text-xl font-bold mb-3">Fiszki</h3>
-							<p class="text-slate-600 mb-6 text-sm">
-								Multimedialne materiały, które ożywiają
-								podręcznikową wiedzę.
-							</p>
-							<button
-								class="text-green-600 font-semibold hover:gap-2 transition-all flex items-center gap-1 group"
-							>
-								Przeglądaj
-								<i
-									class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
-								></i></button
-						></a>
-					</div>
-					<div
-						class="card-hover bg-white p-8 rounded-3xl border border-slate-200"
-					>
-						<div
-							class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-6"
-						>
-							<i class="fas fa-vial text-2xl"></i>
-						</div>
-						<h3 class="text-xl font-bold mb-3">Wirtualne Lab</h3>
-						<p class="text-slate-600 mb-6 text-sm">
-							Przeprowadzaj symulacje i eksperymenty w bezpiecznym
-							środowisku.
-						</p>
-						<button
-							class="text-orange-600 font-semibold hover:gap-2 transition-all flex items-center gap-1 group"
-						>
-							Odkryj
-							<i
-								class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"
-							></i>
-						</button>
-					</div>
+		<section class="hero">
+			<div class="hero-blob blob1"></div>
+			<div class="hero-blob blob2"></div>
+			<div class="math-deco md1">∑</div>
+			<div class="math-deco md2">π</div>
+			<div class="math-deco md3">∞</div>
+			<div class="math-deco md4">√</div>
+			<div class="math-deco md5">÷</div>
+			<div class="math-deco md6">×</div>
+			<div class="hero-content">
+				<div class="hero-badge">🎉 Witaj w świecie liczb!</div>
+				<h1>
+					Matematyka jest <span class="accent-orange">super</span
+					><br />
+					— sprawdź <span class="accent-teal">sam</span>! 🚀
+				</h1>
+				<p class="hero-tagline">
+					Tu liczby zamieniają się w przygodę. Wybierz swoją klasę i
+					zacznij odkrywać tajemnice matematyki — krok po kroku, razem
+					z nauczycielem!
+				</p>
+				<a href="#klasy" class="hero-cta"> ✏️ Wybierz swoją klasę </a>
+				<div class="hero-icons">
+					<div class="hero-icon-pill">🏫 Klasy 1–8</div>
+					<div class="hero-icon-pill">🎯 Ćwiczenia i lekcje</div>
+					<div class="hero-icon-pill">🌟 Ciekawostki</div>
 				</div>
 			</div>
 		</section>
-
-		<!-- Sekcja Postępu -->
-		<section class="py-20">
-			<div
-				class="max-w-5xl mx-auto px-4 bg-indigo-900 rounded-[3rem] p-12 text-white relative overflow-hidden"
-			>
-				<div
-					class="relative z-10 text-center lg:text-left flex flex-col lg:flex-row items-center gap-12"
-				>
-					<div class="lg:w-2/3">
-						<h2 class="text-3xl font-bold">
-							Monitoruj swoje postępy
-						</h2>
-						<p class="mt-4 text-indigo-200">
-							Każda ukończona lekcja i quiz to punkty
-							doświadczenia. Zdobywaj odznaki i bądź najlepszy w
-							swojej grupie!
-						</p>
-						<div class="mt-8 flex gap-6">
-							<div class="text-center">
-								<span class="block text-3xl font-bold"
-									>1.2k+</span
-								>
-								<span class="text-indigo-300 text-sm"
-									>Aktywnych uczniów</span
-								>
-							</div>
-							<div
-								class="text-center border-l border-indigo-700 pl-6"
-							>
-								<span class="block text-3xl font-bold"
-									>850</span
-								>
-								<span class="text-indigo-300 text-sm"
-									>Godzin kursów</span
-								>
-							</div>
-						</div>
-					</div>
-					<div class="lg:w-1/3">
-						<button
-							class="bg-white text-indigo-900 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-indigo-50 transition w-full shadow-xl"
-						>
-							Załóż konto ucznia
-						</button>
-					</div>
+		<section class="classes-section" id="klasy">
+			<div class="section-header">
+				<h2>📚 Twoja klasa czeka!</h2>
+				<p>Kliknij kafelek swojej klasy i zacznij naukę</p>
+				<div class="section-divider">
+					<span></span>
+					<span
+						style="width: 20px; background: var(--c-primary)"
+					></span>
+					<span></span>
 				</div>
-				<!-- Dekoracja tła -->
-				<div
-					class="absolute top-0 right-0 w-64 h-64 bg-indigo-800 rounded-full -mr-20 -mt-20 opacity-50"
-				></div>
+			</div>
+			<div class="classes-grid">
+				<a
+					href="early_education.html"
+					class="class-card"
+					style="--card-accent: #ff6b35; --card-bg-light: #fff2ec"
+				>
+					<div class="card-icon" style="background: #fff2ec">🌈</div>
+					<div class="card-grade">Klasy 1 – 3</div>
+					<div class="card-title">Pierwsze kroki</div>
+					<p class="card-desc">
+						Dodawanie, odejmowanie, kształty i liczby do 1000.
+						Matematyka, którą możesz zobaczyć i dotknąć!
+					</p>
+					<div class="card-topics">
+						<span class="card-tag">Liczby</span>
+						<span class="card-tag">Kształty</span>
+						<span class="card-tag">Zegary</span>
+					</div>
+					<div class="card-arrow">→</div>
+				</a>
+				<a
+					href="4grade.html"
+					class="class-card"
+					style="--card-accent: #4ecdc4; --card-bg-light: #edfafa"
+				>
+					<div class="card-icon" style="background: #edfafa">🔢</div>
+					<div class="card-grade">Klasa 4</div>
+					<div class="card-title">Wkraczamy głębiej</div>
+					<p class="card-desc">
+						Ułamki, duże liczby i pierwsze działania pisemne.
+						Matematyka staje się prawdziwą nauką!
+					</p>
+					<div class="card-topics">
+						<span
+							class="card-tag"
+							style="background: #edfafa; color: #4ecdc4"
+							>Ułamki</span
+						>
+						<span
+							class="card-tag"
+							style="background: #edfafa; color: #4ecdc4"
+							>Mnożenie</span
+						>
+						<span
+							class="card-tag"
+							style="background: #edfafa; color: #4ecdc4"
+							>Geometria</span
+						>
+					</div>
+					<div class="card-arrow" style="color: #4ecdc4">→</div>
+				</a>
+				<a
+					href="5grade.html"
+					class="class-card"
+					style="--card-accent: #a29bfe; --card-bg-light: #f3f0ff"
+				>
+					<div class="card-icon" style="background: #f3f0ff">📐</div>
+					<div class="card-grade">Klasa 5</div>
+					<div class="card-title">Liczymy śmielej</div>
+					<p class="card-desc">
+						Ułamki dziesiętne, pola figur i pierwsze obliczenia
+						procentowe. Jesteś już prawdziwym matematykiem!
+					</p>
+					<div class="card-topics">
+						<span
+							class="card-tag"
+							style="background: #f3f0ff; color: #a29bfe"
+							>Procenty</span
+						>
+						<span
+							class="card-tag"
+							style="background: #f3f0ff; color: #a29bfe"
+							>Pola</span
+						>
+						<span
+							class="card-tag"
+							style="background: #f3f0ff; color: #a29bfe"
+							>Ułamki</span
+						>
+					</div>
+					<div class="card-arrow" style="color: #a29bfe">→</div>
+				</a>
+				<a
+					href="6grade.html"
+					class="class-card"
+					style="--card-accent: #fd79a8; --card-bg-light: #fff0f5"
+				>
+					<div class="card-icon" style="background: #fff0f5">📊</div>
+					<div class="card-grade">Klasa 6</div>
+					<div class="card-title">Odkrywamy wzory</div>
+					<p class="card-desc">
+						Proporcje, skala, wykresy i statystyka. Matematyka,
+						która opisuje prawdziwy świat!
+					</p>
+					<div class="card-topics">
+						<span
+							class="card-tag"
+							style="background: #fff0f5; color: #fd79a8"
+							>Proporcje</span
+						>
+						<span
+							class="card-tag"
+							style="background: #fff0f5; color: #fd79a8"
+							>Wykresy</span
+						>
+						<span
+							class="card-tag"
+							style="background: #fff0f5; color: #fd79a8"
+							>Skala</span
+						>
+					</div>
+					<div class="card-arrow" style="color: #fd79a8">→</div>
+				</a>
+				<a
+					href="7grade.html"
+					class="class-card"
+					style="--card-accent: #00b894; --card-bg-light: #edfff9"
+				>
+					<div class="card-icon" style="background: #edfff9">🔍</div>
+					<div class="card-grade">Klasa 7</div>
+					<div class="card-title">Algebryczna przygoda</div>
+					<p class="card-desc">
+						Równania, wyrażenia algebraiczne i geometria
+						przestrzenna. Logika i myślenie abstrakcyjne na maksa!
+					</p>
+					<div class="card-topics">
+						<span
+							class="card-tag"
+							style="background: #edfff9; color: #00b894"
+							>Algebra</span
+						>
+						<span
+							class="card-tag"
+							style="background: #edfff9; color: #00b894"
+							>Równania</span
+						>
+						<span
+							class="card-tag"
+							style="background: #edfff9; color: #00b894"
+							>Bryły</span
+						>
+					</div>
+					<div class="card-arrow" style="color: #00b894">→</div>
+				</a>
+				<a
+					href="8grade.html"
+					class="class-card"
+					style="--card-accent: #e17055; --card-bg-light: #fff5f2"
+				>
+					<div class="card-icon" style="background: #fff5f2">🏆</div>
+					<div class="card-grade">Klasa 8</div>
+					<div class="card-title">Mistrzostwo liczb</div>
+					<p class="card-desc">
+						Twierdzenie Pitagorasa, układy równań i przygotowanie do
+						egzaminu ósmoklasisty. Czas na finisz!
+					</p>
+					<div class="card-topics">
+						<span
+							class="card-tag"
+							style="background: #fff5f2; color: #e17055"
+							>Pitagoras</span
+						>
+						<span
+							class="card-tag"
+							style="background: #fff5f2; color: #e17055"
+							>Układy</span
+						>
+						<span
+							class="card-tag"
+							style="background: #fff5f2; color: #e17055"
+							>Egzamin</span
+						>
+					</div>
+					<div class="card-arrow" style="color: #e17055">→</div>
+				</a>
 			</div>
 		</section>
+		<section class="fact-section" id="ciekawostka">
+			<div class="fact-inner">
+				<div class="fact-badge">🤯 Ciekawostka matematyczna!</div>
 
-		<!-- Stopka -->
-		<footer class="bg-white border-t border-slate-200 pt-16 pb-8">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div
-					class="flex flex-col md:flex-row justify-between gap-12 mb-12 text-center md:text-left"
-				>
-					<div class="max-w-xs mx-auto md:mx-0">
-						<div
-							class="flex items-center gap-2 mb-6 justify-center md:justify-start"
-						>
-							<div
-								class="p-2 bg-indigo-600 rounded-lg text-white"
-							>
-								<i class="fas fa-graduation-cap text-lg"></i>
-							</div>
-							<span
-								class="font-bold text-lg tracking-tight text-indigo-900"
-								>EduNowoczesność</span
-							>
-						</div>
-						<p class="text-slate-500 text-sm leading-relaxed">
-							Innowacyjna platforma stworzona przez nauczyciela z
-							pasją, aby kształtować kompetencje przyszłości.
-						</p>
-					</div>
-					<div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
-						<div>
-							<h4 class="font-bold mb-4">Dla Ucznia</h4>
-							<ul class="text-slate-500 space-y-2 text-sm">
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Zaloguj się</a
-									>
-								</li>
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Moje postępy</a
-									>
-								</li>
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Ranking</a
-									>
-								</li>
-							</ul>
-						</div>
-						<div>
-							<h4 class="font-bold mb-4">Zasoby</h4>
-							<ul class="text-slate-500 space-y-2 text-sm">
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Matematyka</a
-									>
-								</li>
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Język Polski</a
-									>
-								</li>
-								<li>
-									<a href="#" class="hover:text-indigo-600"
-										>Informatyka</a
-									>
-								</li>
-							</ul>
-						</div>
-						<div class="col-span-2 sm:col-span-1">
-							<h4 class="font-bold mb-4">Kontakt</h4>
-							<p class="text-slate-500 text-sm">
-								kontakt@edunowoczesnosc.pl
-							</p>
-						</div>
+				<div class="fact-content" id="factContent">
+					<div class="fact-emoji" id="factEmoji"></div>
+					<div>
+						<h3 id="factTitle"></h3>
+						<p id="factText"></p>
 					</div>
 				</div>
-				<div
-					class="border-t border-slate-100 pt-8 text-center text-slate-400 text-sm"
-				>
-					&copy; 2024 Portal Edukacyjny. Wszystkie prawa zastrzeżone.
+				<div class="fact-progress">
+					<div class="fact-progress-bar" id="factProgressBar"></div>
 				</div>
+				<div class="fact-dots" id="factDots"></div>
 			</div>
+		</section>
+		<section class="quotes-section" id="cytaty">
+			<div class="section-header">
+				<h2>💬 Wielcy o matematyce</h2>
+				<p>Przesuń, żeby zobaczyć więcej inspiracji</p>
+			</div>
+			<div class="quotes-track-wrapper">
+				<div class="quotes-track" id="quotesTrack"></div>
+			</div>
+		</section>
+		<footer>
+			<div class="footer-logo">🔢 MatiLand</div>
+			<p class="footer-tagline">Matematyka dla każdego — krok po kroku</p>
+			<div class="footer-deco">+ − × ÷ = √ π ∞</div>
+			<p class="footer-sign">
+				Twoja klasa matematyki online &nbsp;|&nbsp;
+				<strong>Twoja Matematyka z Klasą</strong>
+			</p>
 		</footer>
-
-		<script>
-			// Prosta animacja przy przewijaniu
-			window.addEventListener("scroll", () => {
-				const nav = document.querySelector("nav");
-				if (window.scrollY > 20) {
-					nav.classList.add("shadow-sm");
-				} else {
-					nav.classList.remove("shadow-sm");
-				}
-			});
-		</script>
 	</body>
 </html>

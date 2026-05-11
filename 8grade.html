@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MatiLand | Klasa 8 - Twoja Moc Matematyki</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@500;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--bg-dark: #0f172a;
+				--accent-primary: #38bdf8; /* Cyjanowy błękit */
+				--accent-secondary: #818cf8; /* Indygo */
+				--accent-pink: #f472b6; /* Żywy róż */
+				--accent-orange: #fb923c; /* Soczysty pomarańcz */
+				--glass-bg: rgba(255, 255, 255, 0.05);
+				--glass-border: rgba(255, 255, 255, 0.1);
+				--text-light: #f8fafc;
+				--transition-bounce: all 0.5s
+					cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Outfit", sans-serif;
+				background-color: var(--bg-dark);
+				background-image:
+					radial-gradient(
+						at 0% 0%,
+						rgba(56, 189, 248, 0.15) 0px,
+						transparent 50%
+					),
+					radial-gradient(
+						at 100% 100%,
+						rgba(129, 140, 248, 0.15) 0px,
+						transparent 50%
+					);
+				color: var(--text-light);
+				line-height: 1.6;
+				min-height: 100vh;
+				overflow-x: hidden;
+			}
+
+			/* --- BACKGROUND ANIMATION --- */
+			.blob {
+				position: fixed;
+				width: 400px;
+				height: 400px;
+				background: linear-gradient(
+					135deg,
+					var(--accent-primary),
+					var(--accent-secondary)
+				);
+				filter: blur(100px);
+				border-radius: 50%;
+				z-index: -1;
+				opacity: 0.2;
+				animation: moveBlob 20s infinite alternate;
+			}
+
+			@keyframes moveBlob {
+				from {
+					transform: translate(-10%, -10%);
+				}
+				to {
+					transform: translate(100%, 80%);
+				}
+			}
+
+			/* --- NAVIGATION / HEADER --- */
+			header {
+				padding: 2rem 1rem;
+				text-align: center;
+				position: relative;
+			}
+
+			.header-content {
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			.back-nav {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.6rem 1.2rem;
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border);
+				border-radius: 50px;
+				color: var(--accent-primary);
+				text-decoration: none;
+				font-weight: 600;
+				margin-bottom: 2rem;
+				backdrop-filter: blur(10px);
+				transition: var(--transition-bounce);
+			}
+
+			.back-nav:hover {
+				background: var(--accent-primary);
+				color: var(--bg-dark);
+				transform: scale(1.05);
+			}
+
+			h1 {
+				font-family: "Plus Jakarta Sans", sans-serif;
+				font-size: clamp(2.5rem, 8vw, 4.5rem);
+				font-weight: 800;
+				background: linear-gradient(
+					to right,
+					#fff,
+					var(--accent-primary),
+					var(--accent-secondary)
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				line-height: 1.1;
+				margin-bottom: 1rem;
+			}
+
+			.hero-desc {
+				font-size: 1.25rem;
+				color: #94a3b8;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			/* --- GRID --- */
+			.main-container {
+				max-width: 1200px;
+				margin: 3rem auto;
+				padding: 0 1.5rem;
+			}
+
+			.topics-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 1.5rem;
+			}
+
+			.topic-card {
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border);
+				backdrop-filter: blur(15px);
+				border-radius: 30px;
+				padding: 2.5rem 1.5rem;
+				text-decoration: none;
+				color: white;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				transition: var(--transition-bounce);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.topic-card:hover {
+				transform: translateY(-10px) rotate(1deg);
+				border-color: var(--accent-primary);
+				background: rgba(255, 255, 255, 0.08);
+			}
+
+			.topic-card::after {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 4px;
+				background: linear-gradient(
+					90deg,
+					transparent,
+					var(--accent-primary),
+					transparent
+				);
+				opacity: 0;
+				transition: 0.3s;
+			}
+
+			.topic-card:hover::after {
+				opacity: 1;
+			}
+
+			.icon-wrapper {
+				width: 80px;
+				height: 80px;
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 22px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2.5rem;
+				margin-bottom: 1.5rem;
+				box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+			}
+
+			.topic-card h3 {
+				font-size: 1.5rem;
+				margin-bottom: 1rem;
+				font-family: "Plus Jakarta Sans", sans-serif;
+			}
+
+			.topic-card p {
+				font-size: 0.95rem;
+				color: #94a3b8;
+			}
+
+			/* --- CTA SECTION --- */
+			.cta-box {
+				margin-top: 5rem;
+				background: linear-gradient(
+					135deg,
+					var(--accent-primary),
+					var(--accent-secondary)
+				);
+				border-radius: 40px;
+				padding: 3rem;
+				text-align: center;
+				color: var(--bg-dark);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.cta-box h2 {
+				font-size: 2.5rem;
+				font-weight: 800;
+				margin-bottom: 1rem;
+			}
+
+			.cta-box .badge {
+				background: rgba(0, 0, 0, 0.1);
+				padding: 0.5rem 1rem;
+				border-radius: 50px;
+				font-weight: 700;
+				font-size: 0.9rem;
+				text-transform: uppercase;
+			}
+
+			/* --- QUOTES --- */
+			.quotes-ticker {
+				margin-top: 4rem;
+				padding: 2rem 0;
+				border-top: 1px solid var(--glass-border);
+				overflow: hidden;
+				white-space: nowrap;
+			}
+
+			.ticker-content {
+				display: inline-block;
+				animation: scrollTicker 30s linear infinite;
+			}
+
+			@keyframes scrollTicker {
+				from {
+					transform: translateX(100%);
+				}
+				to {
+					transform: translateX(-100%);
+				}
+			}
+
+			.quote-item {
+				display: inline-block;
+				margin-right: 4rem;
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: var(--accent-primary);
+			}
+
+			/* --- FOOTER --- */
+			footer {
+				padding: 4rem 1.5rem;
+				text-align: center;
+				border-top: 1px solid var(--glass-border);
+				margin-top: 4rem;
+				background: rgba(0, 0, 0, 0.2);
+			}
+
+			.footer-logo {
+				font-family: "Plus Jakarta Sans", sans-serif;
+				font-weight: 800;
+				font-size: 1.5rem;
+				margin-bottom: 1rem;
+				display: block;
+			}
+
+			/* --- CUSTOM SCROLLBAR --- */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+			::-webkit-scrollbar-track {
+				background: var(--bg-dark);
+			}
+			::-webkit-scrollbar-thumb {
+				background: var(--glass-border);
+				border-radius: 10px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: var(--accent-primary);
+			}
+
+			/* --- RESPONSIVE --- */
+			@media (max-width: 768px) {
+				h1 {
+					font-size: 3rem;
+				}
+				.cta-box {
+					padding: 2rem;
+					border-radius: 30px;
+				}
+				.cta-box h2 {
+					font-size: 1.8rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="blob"></div>
+
+		<header>
+			<div class="header-content">
+				<a href="#" class="back-nav">
+					<span>⚡</span> Powrót do bazy
+				</a>
+				<h1>Moc Matematyki <br />Klasa 8</h1>
+				<p class="hero-desc">
+					Nie wkuwaj na pamięć. Zrozum zasady gry. Twój bilet do
+					najlepszego liceum zaczyna się tutaj.
+				</p>
+			</div>
+		</header>
+
+		<div class="main-container">
+			<div class="topics-grid">
+				<!-- Dział 1 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">📈</div>
+					<h3>Statystyka</h3>
+					<p>
+						Średnie, mediany i wykresy, które mówią prawdę o danych.
+					</p>
+				</a>
+
+				<!-- Dział 2 -->
+				<a
+					href="#"
+					class="topic-card"
+					style="border-color: var(--accent-pink)"
+				>
+					<div
+						class="icon-wrapper"
+						style="
+							background: rgba(244, 114, 182, 0.1);
+							color: var(--accent-pink);
+						"
+					>
+						󠄀{x}
+					</div>
+					<h3>Algebra</h3>
+					<p>
+						Magiczne x i y. Rozwiązywanie równań szybciej niż na
+						kalkulatorze.
+					</p>
+				</a>
+
+				<!-- Dział 3 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">📐</div>
+					<h3>Geometria 2D</h3>
+					<p>
+						Pola, obwody i trójkąty, które zawsze mają swoje zasady.
+					</p>
+				</a>
+
+				<!-- Dział 4 -->
+				<a
+					href="#"
+					class="topic-card"
+					style="border-color: var(--accent-orange)"
+				>
+					<div
+						class="icon-wrapper"
+						style="
+							background: rgba(251, 146, 60, 0.1);
+							color: var(--accent-orange);
+						"
+					>
+						💎
+					</div>
+					<h3>Wielokąty</h3>
+					<p>
+						Wszystko o kątach i figurach, które mają więcej niż 4
+						boki.
+					</p>
+				</a>
+
+				<!-- Dział 5 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">🧊</div>
+					<h3>Przestrzeń 3D</h3>
+					<p>
+						Buduj i licz bryły. Widzenie przestrzenne to Twoja
+						supermoc.
+					</p>
+				</a>
+
+				<!-- Dział 6 -->
+				<a
+					href="#"
+					class="topic-card"
+					style="
+						background: rgba(56, 189, 248, 0.1);
+						border-width: 2px;
+					"
+				>
+					<div
+						class="icon-wrapper"
+						style="
+							background: var(--accent-primary);
+							color: var(--bg-dark);
+						"
+					>
+						🔥
+					</div>
+					<h3>Egzamin Ready</h3>
+					<p>
+						Zestawy zadań, które faktycznie pojawiają się na
+						arkuszach.
+					</p>
+				</a>
+
+				<!-- Dział 7 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">🎯</div>
+					<h3>Koła i Okręgi</h3>
+					<p>
+						Liczba Pi i tajemnice okrągłych kształtów w teorii i
+						praktyce.
+					</p>
+				</a>
+
+				<!-- Dział 8 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">🧩</div>
+					<h3>Symetrie</h3>
+					<p>
+						Idealne odbicia i obroty. Matematyczne piękno porządku.
+					</p>
+				</a>
+
+				<!-- Dział 9 -->
+				<a href="#" class="topic-card">
+					<div class="icon-wrapper">🎲</div>
+					<h3>Prawdopodobieństwo</h3>
+					<p>Jakie masz szanse? Oblicz ryzyko i wygrywaj w logikę.</p>
+				</a>
+			</div>
+
+			<section class="cta-box">
+				<span class="badge">Egzamin 8-klasisty</span>
+				<h2>Gotowy na Level Up?</h2>
+				<p>
+					Matematyka to jedyny język wspólny dla całego wszechświata.
+					Opanuj go i rządź!
+				</p>
+				<div style="margin-top: 2rem">
+					<p style="font-weight: 800; font-size: 1.2rem">
+						💡 Ciekawostka dnia:
+					</p>
+					<p>
+						Pszczoły budują plastry w kształcie sześciokątów, bo to
+						najbardziej efektywny sposób na przechowywanie miodu
+						przy użyciu minimum wosku. Natura kocha matematykę!
+					</p>
+				</div>
+			</section>
+		</div>
+
+		<div class="quotes-ticker">
+			<div class="ticker-content" id="ticker">
+				<span class="quote-item">"Nie ma nauki bez błędów"</span>
+				<span class="quote-item">"Matematyka to muzyka rozumu"</span>
+				<span class="quote-item"
+					>"Twój mózg to mięsień - trenuj go"</span
+				>
+				<span class="quote-item"
+					>"Logika to niekwestionowana siła"</span
+				>
+				<span class="quote-item"
+					>"Zostań mistrzem liczb w MatiLandzie"</span
+				>
+			</div>
+		</div>
+
+		<footer>
+			<span class="footer-logo">MatiLand</span>
+			<p>Strona stworzona dla uczniów, którzy chcą czegoś więcej.</p>
+			<div style="margin-top: 2rem; opacity: 0.5; font-size: 0.8rem">
+				&copy; 2024 Wszystkie prawa do wiedzy zastrzeżone.
+			</div>
+		</footer>
+
+		<script>
+			// Efekt pojawiania się kafelków przy przewijaniu
+			const observerOptions = {
+				threshold: 0.1,
+			};
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.style.opacity = "1";
+						entry.target.style.transform = "translateY(0)";
+					}
+				});
+			}, observerOptions);
+
+			document.querySelectorAll(".topic-card").forEach((card) => {
+				card.style.opacity = "0";
+				card.style.transform = "translateY(30px)";
+				card.style.transition = "var(--transition-bounce)";
+				observer.observe(card);
+			});
+
+			// Interakcja z kafelkami - efekt dźwięku (wizualny)
+			document.querySelectorAll(".topic-card").forEach((card) => {
+				card.addEventListener("mouseenter", () => {
+					console.log("Exploration start...");
+				});
+			});
+		</script>
+	</body>
+</html>

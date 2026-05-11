@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MatiLand – Matematyka dla każdego!</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style_early.css" />
+	</head>
+	<body>
+		<!-- FLOATING DECORATIONS -->
+		<div class="deco-layer" aria-hidden="true">
+			<span
+				class="deco"
+				style="
+					top: 8%;
+					left: 5%;
+					animation-duration: 7s;
+					font-size: 2.2rem;
+				"
+				>➕</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 15%;
+					left: 88%;
+					animation-duration: 9s;
+					font-size: 1.8rem;
+				"
+				>⭐</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 35%;
+					left: 3%;
+					animation-duration: 11s;
+					font-size: 2.8rem;
+				"
+				>🔺</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 50%;
+					left: 92%;
+					animation-duration: 8s;
+					font-size: 2rem;
+				"
+				>🟡</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 65%;
+					left: 6%;
+					animation-duration: 10s;
+					font-size: 1.6rem;
+				"
+				>✖️</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 75%;
+					left: 85%;
+					animation-duration: 6s;
+					font-size: 2.4rem;
+				"
+				>🔵</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 20%;
+					left: 50%;
+					animation-duration: 12s;
+					font-size: 1.4rem;
+				"
+				>💫</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 80%;
+					left: 40%;
+					animation-duration: 8.5s;
+					font-size: 2rem;
+				"
+				>➖</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 55%;
+					left: 70%;
+					animation-duration: 7.5s;
+					font-size: 1.8rem;
+				"
+				>🔢</span
+			>
+			<span
+				class="deco"
+				style="
+					top: 90%;
+					left: 15%;
+					animation-duration: 9.5s;
+					font-size: 2rem;
+				"
+				>🟢</span
+			>
+		</div>
+
+		<!-- NAV -->
+		<nav>
+			<a class="nav-logo" href="index.html"> 🔢 Mati<span>Land</span> </a>
+			<div class="nav-links">
+				<a href="#tematy">Tematy</a>
+				<a href="#ciekawostka">Ciekawostka</a>
+				<a href="#cytaty">Cytaty</a>
+				<a href="#zabawa">Zabawa</a>
+			</div>
+		</nav>
+
+		<!-- HERO -->
+		<section class="hero" id="start">
+			<div class="hero-badge">✨ Klasy 1–3 · Nauka przez zabawę ✨</div>
+			<h1>Witaj w<br /><span>Matematycznej Krainie!</span> 🌈</h1>
+			<p class="hero-tagline">
+				Tu liczby są <em>wesołe</em>, zadania są <em>fajne</em>,<br />
+				a Ty staniesz się małym <em>mistrzem matematyki!</em>
+			</p>
+			<a href="#tematy" class="btn-start">🚀 Zacznij zabawę!</a>
+			<div class="hero-numbers">
+				<div class="hero-num">1</div>
+				<div class="hero-num">2</div>
+				<div class="hero-num">3</div>
+				<div class="hero-num">4</div>
+				<div class="hero-num">5</div>
+			</div>
+		</section>
+
+		<!-- TILES -->
+		<section id="tematy">
+			<h2 class="section-title reveal">
+				📚 Wybierz
+				<span style="background: var(--yellow); color: var(--text)"
+					>temat</span
+				>
+				i ucz się!
+			</h2>
+			<div class="tiles-grid">
+				<div class="tile tile-1 reveal">
+					<div class="tile-icon">🔢</div>
+					<h3>Liczenie</h3>
+					<p>
+						Poznaj liczby od 1 do 100! Licz przedmioty, dodawaj w
+						myślach i baw się cyferkami.
+					</p>
+				</div>
+				<div class="tile tile-2 reveal">
+					<div class="tile-icon">➕</div>
+					<h3>Dodawanie</h3>
+					<p>
+						Dwa jabłka + trzy jabłka = ile jabłek? Dodawanie to
+						supermoce, które każdy może mieć!
+					</p>
+				</div>
+				<div class="tile tile-3 reveal">
+					<div class="tile-icon">➖</div>
+					<h3>Odejmowanie</h3>
+					<p>
+						Masz 8 cukierków i zjadłeś 3. Ile zostało? Odejmowanie
+						to łatwa zagadka!
+					</p>
+				</div>
+				<div class="tile tile-4 reveal">
+					<div class="tile-icon">🔷</div>
+					<h3>Figury geometryczne</h3>
+					<p>
+						Koło, kwadrat, trójkąt, prostokąt... Figury są wszędzie
+						wokół nas!
+					</p>
+				</div>
+				<div class="tile tile-5 reveal">
+					<div class="tile-icon">🕐</div>
+					<h3>Zegar</h3>
+					<p>
+						Która godzina? Naucz się czytać zegar i zawsze wiedzieć,
+						która jest godzina!
+					</p>
+				</div>
+				<div class="tile tile-6 reveal">
+					<div class="tile-icon">✖️</div>
+					<h3>Tabliczka mnożenia</h3>
+					<p>
+						2 × 3 = 6! Poznaj tabliczkę mnożenia i stań się
+						prawdziwym matematycznym ninja!
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- FUN FACT -->
+		<section id="ciekawostka">
+			<div class="fact-card reveal">
+				<span class="fact-emoji">🤩</span>
+				<h2>Ciekawostka matematyczna!</h2>
+				<p>
+					Czy wiesz, że jeśli dodasz do siebie liczby od 1 do 10,<br />
+					dostaniesz <strong>55</strong>? 🎉<br />
+					1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = <strong>55</strong
+					><br />
+					Spróbuj sprawdzić to sam na palcach – ale będziesz
+					potrzebować znajomych! 😄
+				</p>
+			</div>
+		</section>
+
+		<!-- QUOTES SLIDER -->
+		<section id="cytaty">
+			<h2 class="section-title reveal">
+				💬 Mądrości o
+				<span style="background: var(--pink); color: #fff"
+					>matematyce</span
+				>
+			</h2>
+			<div class="slider-wrap reveal">
+				<div class="slider-track">
+					<div class="slides" id="slides">
+						<div class="slide">
+							<blockquote>
+								„Matematyka to język, którym Bóg napisał
+								Wszechświat." 🌌
+							</blockquote>
+							<cite>— Galileo Galilei</cite>
+						</div>
+						<div class="slide">
+							<blockquote>
+								„Matematyka nie jest trudna – jest tylko
+								nieznana. A każdy nieznajomy może zostać
+								przyjacielem!" 🤝
+							</blockquote>
+							<cite>— Powiedzenie mądrych nauczycieli</cite>
+						</div>
+						<div class="slide">
+							<blockquote>
+								„Każda wielka przygoda zaczyna się od liczenia
+								do trzech: 1… 2… 3… START!" 🚀
+							</blockquote>
+							<cite>— Matematyczna Kraina</cite>
+						</div>
+						<div class="slide">
+							<blockquote>
+								„Kto liczy, ten nie gubi się w życiu!" 🗺️
+							</blockquote>
+							<cite>— Mądrość ludowa</cite>
+						</div>
+						<div class="slide">
+							<blockquote>
+								„Błędy w matematyce to skarby – bo uczą
+								najbardziej!" 💎
+							</blockquote>
+							<cite>— Twój nauczyciel</cite>
+						</div>
+					</div>
+				</div>
+				<div class="slider-dots" id="dots"></div>
+			</div>
+		</section>
+
+		<!-- CHALLENGE -->
+		<section id="zabawa">
+			<h2 class="section-title reveal">
+				🎯 Małe
+				<span style="background: var(--orange); color: #fff"
+					>wyzwanie!</span
+				>
+			</h2>
+			<div class="challenge-box reveal">
+				<span class="emoji-big">🧠</span>
+				<h3>Matematyczne wyzwanie!</h3>
+				<p>Przeczytaj zadanie i wybierz właściwą odpowiedź!</p>
+
+				<div class="score-bar">
+					<span>Wynik:</span>
+					<span id="score-val">0</span> /
+					<span id="total-val">0</span>
+					<span class="stars-row" id="stars-row"></span>
+				</div>
+
+				<div class="task-display">
+					<div class="task-question" id="task-q">
+						Kliknij „Nowe zadanie"!
+					</div>
+				</div>
+
+				<div class="answer-row" id="answers"></div>
+				<div class="feedback" id="feedback"></div>
+				<button class="btn-next show" id="btn-next" onclick="newTask()">
+					🎲 Nowe zadanie!
+				</button>
+			</div>
+		</section>
+
+		<!-- FOOTER -->
+		<footer>
+			<div class="footer-logo">🌟 Matematyczna Kraina</div>
+			<p>Twoja klasa matematyki online &mdash; nauka przez zabawę!</p>
+			<p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.6">
+				Hasło klasy:
+				<em>„Liczymy razem, bawimy się świetnie!"</em> &nbsp;🎉
+			</p>
+			<p style="margin-top: 1rem; font-size: 0.85rem">
+				Z ❤️ dla uczniów klas 1–3 &nbsp;|&nbsp;
+				<a href="#">Kontakt z nauczycielem</a>
+			</p>
+		</footer>
+
+		<script>
+			// ── SCROLL REVEAL ──
+			const revealEls = document.querySelectorAll(".reveal");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((e, i) => {
+						if (e.isIntersecting) {
+							setTimeout(
+								() => e.target.classList.add("visible"),
+								i * 80,
+							);
+							observer.unobserve(e.target);
+						}
+					});
+				},
+				{ threshold: 0.12 },
+			);
+			revealEls.forEach((el) => observer.observe(el));
+
+			// ── SLIDER ──
+			const slides = document.getElementById("slides");
+			const dotsWrap = document.getElementById("dots");
+			const totalSlides = slides.children.length;
+			let current = 0,
+				autoTimer;
+
+			function goTo(n) {
+				current = (n + totalSlides) % totalSlides;
+				slides.style.transform = `translateX(-${current * 100}%)`;
+				document
+					.querySelectorAll(".dot")
+					.forEach((d, i) =>
+						d.classList.toggle("active", i === current),
+					);
+			}
+
+			// build dots
+			for (let i = 0; i < totalSlides; i++) {
+				const btn = document.createElement("button");
+				btn.className = "dot" + (i === 0 ? " active" : "");
+				btn.setAttribute("aria-label", `Cytat ${i + 1}`);
+				btn.onclick = () => {
+					goTo(i);
+					resetAuto();
+				};
+				dotsWrap.appendChild(btn);
+			}
+
+			function resetAuto() {
+				clearInterval(autoTimer);
+				autoTimer = setInterval(() => goTo(current + 1), 4000);
+			}
+			resetAuto();
+
+			// ── CHALLENGE ──
+			const tasks = [
+				{ q: "3 + 4 = ?", a: 7, ops: [5, 7, 9, 6] },
+				{ q: "8 - 3 = ?", a: 5, ops: [4, 5, 6, 3] },
+				{ q: "2 + 6 = ?", a: 8, ops: [7, 8, 9, 6] },
+				{ q: "10 - 4 = ?", a: 6, ops: [5, 6, 7, 8] },
+				{ q: "5 + 5 = ?", a: 10, ops: [8, 9, 10, 11] },
+				{ q: "7 - 2 = ?", a: 5, ops: [3, 4, 5, 6] },
+				{ q: "4 + 3 = ?", a: 7, ops: [6, 7, 8, 9] },
+				{ q: "9 - 5 = ?", a: 4, ops: [3, 4, 5, 6] },
+				{ q: "6 + 2 = ?", a: 8, ops: [6, 7, 8, 9] },
+				{ q: "2 × 3 = ?", a: 6, ops: [5, 6, 7, 8] },
+				{ q: "3 × 3 = ?", a: 9, ops: [6, 8, 9, 12] },
+				{ q: "Ile to 5 + 0?", a: 5, ops: [0, 4, 5, 6] },
+				{ q: "1 + 1 + 1 = ?", a: 3, ops: [2, 3, 4, 5] },
+				{ q: "10 - 7 = ?", a: 3, ops: [2, 3, 4, 5] },
+			];
+
+			let score = 0,
+				total = 0,
+				answered = false;
+			const scoreVal = document.getElementById("score-val");
+			const totalVal = document.getElementById("total-val");
+			const starsRow = document.getElementById("stars-row");
+			const taskQ = document.getElementById("task-q");
+			const answersEl = document.getElementById("answers");
+			const feedbackEl = document.getElementById("feedback");
+			const btnNext = document.getElementById("btn-next");
+
+			function newTask() {
+				answered = false;
+				feedbackEl.textContent = "";
+				feedbackEl.className = "feedback";
+				btnNext.classList.remove("show");
+
+				const t = tasks[Math.floor(Math.random() * tasks.length)];
+				taskQ.textContent = t.q;
+
+				// shuffle options
+				const opts = [...t.ops].sort(() => Math.random() - 0.5);
+				answersEl.innerHTML = "";
+				opts.forEach((val) => {
+					const btn = document.createElement("button");
+					btn.className = "answer-btn";
+					btn.textContent = val;
+					btn.onclick = () => checkAnswer(btn, val, t.a, opts);
+					answersEl.appendChild(btn);
+				});
+			}
+
+			function checkAnswer(btn, val, correct, opts) {
+				if (answered) return;
+				answered = true;
+				total++;
+				totalVal.textContent = total;
+
+				if (val === correct) {
+					score++;
+					scoreVal.textContent = score;
+					btn.classList.add("correct");
+					feedbackEl.textContent = [
+						"Super! 🎉",
+						"Brawo! ⭐",
+						"Doskonale! 🥳",
+						"Jesteś mistrzem! 🏆",
+					][Math.floor(Math.random() * 4)];
+					feedbackEl.className = "feedback correct";
+				} else {
+					btn.classList.add("wrong");
+					feedbackEl.textContent = `Ups! Dobra odpowiedź to ${correct} 💪`;
+					feedbackEl.className = "feedback wrong";
+					// highlight correct
+					document.querySelectorAll(".answer-btn").forEach((b) => {
+						if (+b.textContent === correct)
+							b.classList.add("correct");
+					});
+				}
+
+				// update stars
+				const pct = total > 0 ? score / total : 0;
+				starsRow.innerHTML =
+					pct >= 0.8 ? "⭐⭐⭐" : pct >= 0.5 ? "⭐⭐" : "⭐";
+
+				btnNext.textContent = "➡️ Następne zadanie!";
+				btnNext.classList.add("show");
+			}
+		</script>
+	</body>
+</html>
